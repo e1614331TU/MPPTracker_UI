@@ -1,0 +1,206 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 2097152 bytes for Failed to commit area from 0x000001b921a40000 to 0x000001b921c40000 of length 2097152.
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   The process is running with CompressedOops enabled, and the Java Heap may be blocking the growth of the native heap
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (t:/workspace/open/src/hotspot/os/windows/os_windows.cpp:3301), pid=1124, tid=1240
+#
+# JRE version:  (13.0.2+8) (build )
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (13.0.2+8, mixed mode, aot, sharing, tiered, compressed oops, g1 gc, windows-amd64)
+# No core dump will be written. Minidumps are not enabled by default on client versions of Windows
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: -Dfile.encoding=Cp1252 --module-path=C:\Users\robin\git\EA_FOPSM_Console\FOPSM_Console\bin;C:\Users\robin\git\EA_FOPSM_Console\FOPSM_Console\lib\jSerialComm-2.6.0.jar -Djdk.module.main=FOPSM_Console FOPSM_Console/base.Launcher
+
+Host: Intel(R) Core(TM) i7-8650U CPU @ 1.90GHz, 8 cores, 7G,  Windows 10 , 64 bit Build 18362 (10.0.18362.329)
+Time: Mon Mar 23 16:28:37 2020 Mitteleuropäische Zeit elapsed time: 0 seconds (0d 0h 0m 0s)
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x000001b90753f800):  JavaThread "Unknown thread" [_thread_in_vm, id=1240, stack(0x00000078a0b00000,0x00000078a0c00000)]
+
+Stack: [0x00000078a0b00000,0x00000078a0c00000]
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [jvm.dll+0x624f9a]
+V  [jvm.dll+0x770cfa]
+V  [jvm.dll+0x7724af]
+V  [jvm.dll+0x772ab3]
+V  [jvm.dll+0x24bf08]
+V  [jvm.dll+0x6222aa]
+V  [jvm.dll+0x6170b5]
+V  [jvm.dll+0x30a88c]
+V  [jvm.dll+0x30a6c2]
+V  [jvm.dll+0x30fe36]
+V  [jvm.dll+0x353f6f]
+V  [jvm.dll+0x353720]
+V  [jvm.dll+0x2e550a]
+V  [jvm.dll+0x2e67a2]
+V  [jvm.dll+0x74dd78]
+V  [jvm.dll+0x361989]
+V  [jvm.dll+0x730e65]
+V  [jvm.dll+0x3cc53f]
+V  [jvm.dll+0x3ce861]
+C  [jli.dll+0x51ff]
+C  [ucrtbase.dll+0x20e72]
+C  [KERNEL32.DLL+0x17bd4]
+C  [ntdll.dll+0x6ced1]
+
+
+---------------  P R O C E S S  ---------------
+
+Threads class SMR info:
+_java_thread_list=0x00007ffe84e2ccb8, length=0, elements={
+}
+
+Java Threads: ( => current thread )
+
+Other Threads:
+  0x000001b907583800 GCTaskThread "GC Thread#0" [stack: 0x00000078a0c00000,0x00000078a0d00000] [id=4004]
+  0x000001b907595000 ConcurrentGCThread "G1 Main Marker" [stack: 0x00000078a0d00000,0x00000078a0e00000] [id=15340]
+  0x000001b907598000 ConcurrentGCThread "G1 Conc#0" [stack: 0x00000078a0e00000,0x00000078a0f00000] [id=10112]
+
+[error occurred during error reporting (printing all threads), id 0xc0000005, EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x00007ffe846651d7]
+
+VM state:not at safepoint (not fully initialized)
+
+VM Mutex/Monitor currently owned by a thread:  ([mutex/lock_event])
+[0x000001b90753b870] Heap_lock - owner thread: 0x000001b90753f800
+
+Heap address: 0x0000000081200000, size: 2030 MB, Compressed Oops mode: Non-zero based: 0x0000000081200000
+Narrow klass base: 0x0000000000000000, Narrow klass shift: 0
+
+GC Heap History (0 events):
+No events
+
+Deoptimization events (0 events):
+No events
+
+Classes unloaded (0 events):
+No events
+
+Classes redefined (0 events):
+No events
+
+Internal exceptions (0 events):
+No events
+
+Events (8 events):
+Event: 0.006 Loaded shared library C:\Program Files\Java\jdk-13.0.2\bin\zip.dll
+Event: 0.006 Loaded shared library C:\Program Files\Java\jdk-13.0.2\bin\jimage.dll
+Event: 0.008 Loading shared library C:\Program Files\Java\jdk-13.0.2\lib\libjava.base-coop.dll failed, error code 126
+Event: 0.008 Loading shared library C:\Program Files\Java\jdk-13.0.2\lib\libjava.logging-coop.dll failed, error code 126
+Event: 0.008 Loading shared library C:\Program Files\Java\jdk-13.0.2\lib\libjdk.compiler-coop.dll failed, error code 126
+Event: 0.008 Loading shared library C:\Program Files\Java\jdk-13.0.2\lib\libjdk.scripting.nashorn-coop.dll failed, error code 126
+Event: 0.008 Loading shared library C:\Program Files\Java\jdk-13.0.2\lib\libjdk.internal.vm.ci-coop.dll failed, error code 126
+Event: 0.008 Loading shared library C:\Program Files\Java\jdk-13.0.2\lib\libjdk.internal.vm.compiler-coop.dll failed, error code 126
+
+
+Dynamic libraries:
+0x00007ff655c10000 - 0x00007ff655c1f000 	C:\Program Files\Java\jdk-13.0.2\bin\javaw.exe
+0x00007ffee04a0000 - 0x00007ffee0690000 	C:\WINDOWS\SYSTEM32\ntdll.dll
+0x00007ffedede0000 - 0x00007ffedee92000 	C:\WINDOWS\System32\KERNEL32.DLL
+0x00007ffedd510000 - 0x00007ffedd7b3000 	C:\WINDOWS\System32\KERNELBASE.dll
+0x00007ffede3d0000 - 0x00007ffede4ca000 	C:\WINDOWS\System32\ucrtbase.dll
+0x00007ffebe710000 - 0x00007ffebe725000 	C:\Program Files\Java\jdk-13.0.2\bin\VCRUNTIME140.dll
+0x00007ffebaf60000 - 0x00007ffebaf78000 	C:\Program Files\Java\jdk-13.0.2\bin\jli.dll
+0x00007ffedf490000 - 0x00007ffedf533000 	C:\WINDOWS\System32\ADVAPI32.dll
+0x00007ffedfdc0000 - 0x00007ffedfe5e000 	C:\WINDOWS\System32\msvcrt.dll
+0x00007ffedf3f0000 - 0x00007ffedf487000 	C:\WINDOWS\System32\sechost.dll
+0x00007ffedfc30000 - 0x00007ffedfd50000 	C:\WINDOWS\System32\RPCRT4.dll
+0x00007ffedff30000 - 0x00007ffee00c4000 	C:\WINDOWS\System32\USER32.dll
+0x00007ffedd4e0000 - 0x00007ffedd501000 	C:\WINDOWS\System32\win32u.dll
+0x00007ffed01a0000 - 0x00007ffed0425000 	C:\WINDOWS\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.18362.720_none_e6beb5c51314836b\COMCTL32.dll
+0x00007ffedf0b0000 - 0x00007ffedf0d6000 	C:\WINDOWS\System32\GDI32.dll
+0x00007ffede550000 - 0x00007ffede886000 	C:\WINDOWS\System32\combase.dll
+0x00007ffedd860000 - 0x00007ffedd9f4000 	C:\WINDOWS\System32\gdi32full.dll
+0x00007ffede200000 - 0x00007ffede280000 	C:\WINDOWS\System32\bcryptPrimitives.dll
+0x00007ffedd7c0000 - 0x00007ffedd85e000 	C:\WINDOWS\System32\msvcp_win.dll
+0x00007ffecced0000 - 0x00007ffecceda000 	C:\WINDOWS\SYSTEM32\VERSION.dll
+0x00007ffee0380000 - 0x00007ffee03ae000 	C:\WINDOWS\System32\IMM32.DLL
+0x00007ffe9ed40000 - 0x00007ffe9eddb000 	C:\Program Files\Java\jdk-13.0.2\bin\msvcp140.dll
+0x00007ffe84370000 - 0x00007ffe84ecd000 	C:\Program Files\Java\jdk-13.0.2\bin\server\jvm.dll
+0x00007ffee01d0000 - 0x00007ffee01d8000 	C:\WINDOWS\System32\PSAPI.DLL
+0x00007ffecd510000 - 0x00007ffecd519000 	C:\WINDOWS\SYSTEM32\WSOCK32.dll
+0x00007ffed0870000 - 0x00007ffed0894000 	C:\WINDOWS\SYSTEM32\WINMM.dll
+0x00007ffedfd50000 - 0x00007ffedfdbf000 	C:\WINDOWS\System32\WS2_32.dll
+0x00007ffed0840000 - 0x00007ffed086d000 	C:\WINDOWS\SYSTEM32\winmmbase.dll
+0x00007ffede1b0000 - 0x00007ffede1fa000 	C:\WINDOWS\System32\cfgmgr32.dll
+0x00007ffedd370000 - 0x00007ffedd381000 	C:\WINDOWS\System32\kernel.appcore.dll
+0x00007ffed4c40000 - 0x00007ffed4c50000 	C:\Program Files\Java\jdk-13.0.2\bin\verify.dll
+0x00007ffedbbf0000 - 0x00007ffedbde4000 	C:\WINDOWS\SYSTEM32\DBGHELP.DLL
+0x00007ffed3310000 - 0x00007ffed333a000 	C:\WINDOWS\SYSTEM32\dbgcore.DLL
+0x00007ffebe7a0000 - 0x00007ffebe7c6000 	C:\Program Files\Java\jdk-13.0.2\bin\java.dll
+0x00007ffec24d0000 - 0x00007ffec24e7000 	C:\Program Files\Java\jdk-13.0.2\bin\zip.dll
+0x00007ffed4c30000 - 0x00007ffed4c3a000 	C:\Program Files\Java\jdk-13.0.2\bin\jimage.dll
+
+dbghelp: loaded successfully - version: 4.0.5 - missing functions: none
+symbol engine: initialized successfully - sym options: 0x614 - pdb path: .;C:\Program Files\Java\jdk-13.0.2\bin;C:\WINDOWS\SYSTEM32;C:\WINDOWS\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.18362.720_none_e6beb5c51314836b;C:\Program Files\Java\jdk-13.0.2\bin\server
+
+VM Arguments:
+jvm_args: -Dfile.encoding=Cp1252 --module-path=C:\Users\robin\git\EA_FOPSM_Console\FOPSM_Console\bin;C:\Users\robin\git\EA_FOPSM_Console\FOPSM_Console\lib\jSerialComm-2.6.0.jar -Djdk.module.main=FOPSM_Console 
+java_command: FOPSM_Console/base.Launcher
+java_class_path (initial): <not set>
+Launcher Type: SUN_STANDARD
+
+[Global flags]
+     intx CICompilerCount                          = 4                                         {product} {ergonomic}
+     uint ConcGCThreads                            = 2                                         {product} {ergonomic}
+     uint G1ConcRefinementThreads                  = 8                                         {product} {ergonomic}
+   size_t G1HeapRegionSize                         = 1048576                                   {product} {ergonomic}
+    uintx GCDrainStackTargetSize                   = 64                                        {product} {ergonomic}
+   size_t InitialHeapSize                          = 134217728                                 {product} {ergonomic}
+   size_t MarkStackSize                            = 4194304                                   {product} {ergonomic}
+   size_t MaxHeapSize                              = 2128609280                                {product} {ergonomic}
+   size_t MinHeapDeltaBytes                        = 1048576                                   {product} {ergonomic}
+   size_t MinHeapSize                              = 8388608                                   {product} {ergonomic}
+    uintx NonNMethodCodeHeapSize                   = 5839372                                {pd product} {ergonomic}
+    uintx NonProfiledCodeHeapSize                  = 122909434                              {pd product} {ergonomic}
+    uintx ProfiledCodeHeapSize                     = 122909434                              {pd product} {ergonomic}
+    uintx ReservedCodeCacheSize                    = 251658240                              {pd product} {ergonomic}
+     bool SegmentedCodeCache                       = true                                      {product} {ergonomic}
+   size_t SoftMaxHeapSize                          = 2128609280                             {manageable} {ergonomic}
+     bool UseCompressedClassPointers               = true                                 {lp64_product} {ergonomic}
+     bool UseCompressedOops                        = true                                 {lp64_product} {ergonomic}
+     bool UseG1GC                                  = true                                      {product} {ergonomic}
+     bool UseLargePagesIndividualAllocation        = false                                  {pd product} {ergonomic}
+
+Logging:
+Log output configuration:
+ #0: stdout all=warning uptime,level,tags
+ #1: stderr all=off uptime,level,tags
+
+Environment Variables:
+PATH=C:/Program Files/Java/jdk-13.0.2/bin/server;C:/Program Files/Java/jdk-13.0.2/bin;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;D:\Programme\MatlabR2019b\bin;C:\WINDOWS\System32\OpenSSH\;D:\Programme\Miktex\miktex\bin\x64\;D:\Programme\Git\cmd;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit\;C:\Program Files\dotnet\;C:\Program Files (x86)\dotnet\;C:\Program Files (x86)\Microsoft SQL Server\150\DTS\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\130\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\140\Tools\Binn\;C:\Program Files\Microsoft SQL Server\140\Tools\Binn\;C:\Program Files\Microsoft SQL Server\140\DTS\Binn\;D:\Programme\Putty\;C:\Users\robin\AppData\Local\Microsoft\WindowsApps;D:\Programme\MikTeX\miktex\bin\x64\;D:\Programme\CodeBlocks\MinGW\bin;C:\Program Files\MySQL\MySQL Server 8.0\bin;C:\Users\robin\Desktop;
+USERNAME=robin
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 142 Stepping 10, GenuineIntel
+
+
+
+---------------  S Y S T E M  ---------------
+
+OS: Windows 10 , 64 bit Build 18362 (10.0.18362.329)
+
+CPU:total 8 (initial active 8) (4 cores per cpu, 2 threads per core) family 6 model 142 stepping 10, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, avx, avx2, aes, clmul, erms, rtm, 3dnowpref, lzcnt, ht, tsc, tscinvbit, bmi1, bmi2, adx, fma
+
+Memory: 4k page, system-wide physical 8116M (733M free)
+TotalPageFile size 17111M (AvailPageFile size 6M)
+current process WorkingSet (physical memory assigned to process): 10M, peak: 10M
+current process commit charge ("private bytes"): 190M, peak: 192M
+
+vm_info: Java HotSpot(TM) 64-Bit Server VM (13.0.2+8) for windows-amd64 JRE (13.0.2+8), built on Dec 11 2019 09:20:33 by "mach5one" with unknown MS VC++:1916
+
+END.

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-10">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="lib/jSerialComm-2.6.0.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="https://fazecast.github.io/jSerialComm/javadoc/com/fazecast/jSerialComm/package-summary.html"/>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="lib/xchart-3.6.2.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="https://javadoc.io/doc/com.xeiam/xchart/latest/index.html"/>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

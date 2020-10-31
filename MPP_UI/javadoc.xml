@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="javadoc">
+    <target name="javadoc">
+        <javadoc access="public" additionalparam=" --module-path ..\\FOPSM_Console\\lib\\jSerialComm-2.6.0.jar&#13;&#10;&#13;&#10;" author="true" classpath="lib/jSerialComm-2.6.0.jar;lib/xchart-3.6.2.jar" destdir="doc" doctitle="FOPSM_Console_Doc" nodeprecated="false" nodeprecatedlist="false" noindex="false" nonavbar="false" notree="false" packagenames="base,base.graphics,comm" source="10" sourcefiles="src/module-info.java" sourcepath="src" splitindex="true" use="true" version="true">
+            <link href="https://fazecast.github.io/jSerialComm/javadoc/com/fazecast/jSerialComm/package-summary.html"/>
+            <link href="https://javadoc.io/doc/com.xeiam/xchart/latest/index.html"/>
+        </javadoc>
+    </target>
+</project>

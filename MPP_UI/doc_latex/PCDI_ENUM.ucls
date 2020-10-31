@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.4" icons="true" automaticImage="JPEG" always-add-relationships="false" 
+  generalizations="true" realizations="true" associations="true" dependencies="false" nesting-relationships="true" 
+  router="FAN">  
+  <enumeration id="1" language="java" name="comm.PCDI_OSCILLOSCOPE_COMMAND" project="FOPSM_Console" 
+    file="/FOPSM_Console/src/comm/PCDI_OSCILLOSCOPE_COMMAND.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="176" width="464" x="18" y="356"/>    
+    <display autosize="false" stereotype="false" package="false" initial-value="false" signature="false" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </enumeration>  
+  <enumeration id="2" language="java" name="comm.PCDI_UNIT" project="FOPSM_Console" 
+    file="/FOPSM_Console/src/comm/PCDI_UNIT.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="192" width="164" x="802" y="-4"/>    
+    <display autosize="false" stereotype="false" package="false" initial-value="false" signature="false" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </enumeration>  
+  <enumeration id="3" language="java" name="comm.PCDI_COMMANDS" project="FOPSM_Console" 
+    file="/FOPSM_Console/src/comm/PCDI_COMMANDS.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="156" width="311" x="486" y="-5"/>    
+    <display autosize="false" stereotype="false" package="false" initial-value="false" signature="false" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </enumeration>  
+  <enumeration id="4" language="java" name="comm.PCDI_TYPES" project="FOPSM_Console" 
+    file="/FOPSM_Console/src/comm/PCDI_TYPES.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="885" y="258"/>    
+    <display autosize="true" stereotype="false" package="false" initial-value="false" signature="false" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </enumeration>  
+  <enumeration id="5" language="java" name="comm.PCDI_PERMISSION" project="FOPSM_Console" 
+    file="/FOPSM_Console/src/comm/PCDI_PERMISSION.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="120" width="319" x="488" y="409"/>    
+    <display autosize="false" stereotype="false" package="false" initial-value="false" signature="false" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </enumeration>  
+  <enumeration id="6" language="java" name="comm.PCDI_OSCILLOSCOPE_STATE" project="FOPSM_Console" 
+    file="/FOPSM_Console/src/comm/PCDI_OSCILLOSCOPE_STATE.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="643" y="217"/>    
+    <display autosize="true" stereotype="false" package="false" initial-value="false" signature="false" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </enumeration>  
+  <enumeration id="7" language="java" name="comm.PCDI_ERROR_TYPE" project="FOPSM_Console" 
+    file="/FOPSM_Console/src/comm/PCDI_ERROR_TYPE.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="644" y="345"/>    
+    <display autosize="true" stereotype="false" package="false" initial-value="false" signature="false" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </enumeration>  
+  <enumeration id="8" language="java" name="comm.PCDI_MESSAGE_TYPE" project="FOPSM_Console" 
+    file="/FOPSM_Console/src/comm/PCDI_MESSAGE_TYPE.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="354" width="465" x="17" y="-3"/>    
+    <display autosize="false" stereotype="false" package="false" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </enumeration>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
