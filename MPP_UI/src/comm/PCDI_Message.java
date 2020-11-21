@@ -26,7 +26,7 @@ public class PCDI_Message {
 	
 	
 	/**
-	 * this is the constructor. it is not used
+	 * Constructor
 	 * @param deviceId the deviceId of the communication-device
 	 * @param type the message type
 	 * @param data the data (command, value,..)
@@ -44,7 +44,7 @@ public class PCDI_Message {
 		this.cs = cs;
 	}
 	/**
-	 * this is a constructor. it is not used.
+	 * Constructor
 	 * @param deviceId the deviceId of the communication-device
 	 * @param type the message type
 	 * @param data the data (command, value,..)
@@ -59,7 +59,7 @@ public class PCDI_Message {
 	}
 	
 	/**
-	 * this constructor is used by the PCD_Interface and the PCDI_Parser
+	 * Constructor
 	 * the data is added afterwards
 	 * @param deviceId the deviceId of the communication-device
 	 * @param type the message type
@@ -96,12 +96,20 @@ public class PCDI_Message {
 	 */
 	public byte calculateChecksum() {
 		int res = 0;
-		res = res + (((int)PCDI_Message.HEADER) & 0xFF);
+		/*res = res + (((int)PCDI_Message.HEADER) & 0xFF);
 		res = res + (((int)this.length) & 0xFF);
 		res = res + (((int)this.deviceId) & 0xFF);
 		res = res + (((int)this.type.getCode()) & 0xFF);
 		for(Byte tmp : this.data) {
 			res = res +(((int)tmp) & 0xFF);
+		}
+		return (byte)((res)&0xFF);*/
+		res = res + (Byte.toUnsignedInt(PCDI_Message.HEADER) & 0xFF);
+		res = res + (Byte.toUnsignedInt(this.length) & 0xFF);
+		res = res + (Byte.toUnsignedInt(this.deviceId) & 0xFF);
+		res = res + (Byte.toUnsignedInt(this.type.getCode()) & 0xFF);
+		for(Byte tmp : this.data) {
+			res = res +(Byte.toUnsignedInt(tmp) & 0xFF);
 		}
 		return (byte)((res)&0xFF);
 	}
@@ -162,7 +170,11 @@ public class PCDI_Message {
 	 */
 	@Override
 	public String toString() {
-		return "PCDI_Message[length:" + this.length.toString() + ", type:" + this.type.toString() + ", cs:" + this.cs + "]";
+		String res = "PCDI_Message[id: "+ Byte.toUnsignedInt(this.type.getCode()) + ", length:" + this.length.toString() + ", type:" + this.type.toString() + ", cs:" + this.calculateChecksum() + "]";
+		for(byte tmp : this.data) {
+			res = res +  Byte.toUnsignedInt(tmp) + ":";
+		}
+		return res;
 	}
 	
 }

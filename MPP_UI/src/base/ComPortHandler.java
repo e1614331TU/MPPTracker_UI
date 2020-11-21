@@ -27,7 +27,7 @@ public class ComPortHandler implements I_HWI, SerialPortDataListener{
 	//Listener pattern
 	private Collection<I_HWI_Listener> listener = new ArrayList<I_HWI_Listener>();
 	
-	private static final int BAUDRATE = 9600;
+	private static final int BAUDRATE = 38400;
 	private static final int STOP_BITS = SerialPort.ONE_STOP_BIT;
 	private static final int PARITY_BIT = SerialPort.NO_PARITY;
 	private static final int DATA_BITS = 8;

@@ -199,18 +199,19 @@ public class PCD_Interface implements I_PCDI, I_HWI_Listener{
 			this.rxBuffer.remove(0);
 			System.out.println("Byte received but not header\n");
 		}
-		if(this.rxBuffer.size()>=2) {
-			int messageLength=this.rxBuffer.get(1).intValue();
-			if(messageLength<=this.rxBuffer.size()) {
-				PCDI_Message msg=new PCDI_Message(Byte.toUnsignedInt(this.rxBuffer.get(2)),PCDI_MESSAGE_TYPE.fromByte(this.rxBuffer.get(3)));
+		if(this.rxBuffer.size() >= 2) {
+			int messageLength = this.rxBuffer.get(1).intValue();
+			if(messageLength <= this.rxBuffer.size()) {
+				PCDI_Message msg = new PCDI_Message(Byte.toUnsignedInt(this.rxBuffer.get(2)),PCDI_MESSAGE_TYPE.fromByte(this.rxBuffer.get(3)));
 				for(int i=0; i<messageLength-PCDI_Message.BASE_LEN;i++) {
 					msg.addData(this.rxBuffer.get(i+4));
 				}		
-				byte checksum=this.rxBuffer.get(messageLength-1);
+				byte checksum = this.rxBuffer.get(messageLength-1);
 				for(int i=0; i<messageLength;i++)
 					this.rxBuffer.remove(0);
-				if(checksum!=msg.calculateChecksum()) {
-					System.out.println("ERROR CHECKSUM NOT OK. Checksum got: "+checksum+" Checksum should be: "+msg.calculateChecksum());
+				if(checksum != msg.calculateChecksum()) {
+					System.out.println("Checksum-Error. Recveived-CS " + Byte.toUnsignedInt(checksum) + " Calculated-CS: " + Byte.toUnsignedInt(msg.calculateChecksum()));
+					System.out.println(msg);
 					return;
 				}
 				this.rxMessageBuffer.add(msg);
