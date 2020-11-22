@@ -51,10 +51,9 @@ public class JPanelConfig extends JPanel implements ActionListener, I_PCDI_Liste
 	private JList<String> listComPorts;
 	private JButton buttonRefresh;
 	private JButton buttonOpenClose;
-	private JButton buttonResetPwrStg;
-	private JButton buttonEnableCC;
-	private JButton buttonEnableSC;
-	private JButton buttonEnablePC;
+	private JButton buttonResetComp;
+	private JButton buttonEnableVC;
+	private JButton buttonEnableMPP;
 	
 	private JLabel labelConnectionState;
 	
@@ -68,7 +67,6 @@ public class JPanelConfig extends JPanel implements ActionListener, I_PCDI_Liste
 	private GraphicJPanel circleCC;
 	private GraphicJPanel circlePC;
 	private GraphicJPanel circleSC;
-	private GraphicJPanel circlePWRST;
 	
 	private boolean ccIsEnabled = false;
 	private boolean scIsEnabled = false;
@@ -203,13 +201,13 @@ public class JPanelConfig extends JPanel implements ActionListener, I_PCDI_Liste
 		gbc_panel_1.gridy = 1;
 		add(panel_1, gbc_panel_1);
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
-		gbl_panel_1.columnWidths = new int[]{80, 0, 80, 80, 0, 80, 80, 0, 80, 80, 0, 80};
+		gbl_panel_1.columnWidths = new int[]{80, 0, 80, 80, 0, 80, 80, 0, 80};
 		gbl_panel_1.rowHeights = new int[]{0, 0};
 		gbl_panel_1.columnWeights = new double[]{0.0, 0.0, 0.0};
 		gbl_panel_1.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 		panel_1.setLayout(gbl_panel_1);
 		
-		JLabel lblNewLabel_1 = new JLabel("CurrentController");
+		JLabel lblNewLabel_1 = new JLabel("Reset Comperator");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNewLabel_1.setPreferredSize(new Dimension(100, 20));
@@ -228,16 +226,16 @@ public class JPanelConfig extends JPanel implements ActionListener, I_PCDI_Liste
 		gbc_circleCC.fill = GridBagConstraints.BOTH;
 		panel_1.add(this.circleCC, gbc_circleCC);
 		
-		this.buttonEnableCC = new JButton("enable");
-		this.buttonEnableCC.addActionListener(this);
-		this.buttonEnableCC.setPreferredSize(new Dimension(100, 20));
-		GridBagConstraints gbc_buttonEnableCC = new GridBagConstraints();
-		gbc_buttonEnableCC.fill = GridBagConstraints.BOTH;
-		gbc_buttonEnableCC.gridx = 8;
-		gbc_buttonEnableCC.gridy = 0;
-		panel_1.add(this.buttonEnableCC, gbc_buttonEnableCC);
+		this.buttonResetComp = new JButton("reset");
+		this.buttonResetComp.addActionListener(this);
+		this.buttonResetComp.setPreferredSize(new Dimension(100, 20));
+		GridBagConstraints gbc_buttonResetComp = new GridBagConstraints();
+		gbc_buttonResetComp.fill = GridBagConstraints.BOTH;
+		gbc_buttonResetComp.gridx = 8;
+		gbc_buttonResetComp.gridy = 0;
+		panel_1.add(this.buttonResetComp, gbc_buttonResetComp);
 		
-		JLabel lblNewLabel_2 = new JLabel("SpeedController");
+		JLabel lblNewLabel_2 = new JLabel("VoltageCotroller");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNewLabel_2.setPreferredSize(new Dimension(60, 20));
@@ -256,16 +254,17 @@ public class JPanelConfig extends JPanel implements ActionListener, I_PCDI_Liste
 		gbc_circleSC.fill = GridBagConstraints.BOTH;
 		panel_1.add(this.circleSC, gbc_circleSC);
 		
-		this.buttonEnableSC = new JButton("enable");
-		this.buttonEnableSC.addActionListener(this);
-		this.buttonEnableSC.setPreferredSize(new Dimension(100, 20));
-		GridBagConstraints gbc_buttonEnableSC = new GridBagConstraints();
-		gbc_buttonEnableSC.fill = GridBagConstraints.BOTH;
-		gbc_buttonEnableSC.gridx = 5;
-		gbc_buttonEnableSC.gridy = 0;
-		panel_1.add(this.buttonEnableSC, gbc_buttonEnableSC);
+		this.buttonEnableVC = new JButton("enable");
+		this.buttonEnableVC.addActionListener(this);
+		this.buttonEnableVC.setPreferredSize(new Dimension(100, 20));
+		GridBagConstraints gbc_buttonEnableVC = new GridBagConstraints();
+		gbc_buttonEnableVC.insets = new Insets(0, 0, 0, 5);
+		gbc_buttonEnableVC.fill = GridBagConstraints.BOTH;
+		gbc_buttonEnableVC.gridx = 5;
+		gbc_buttonEnableVC.gridy = 0;
+		panel_1.add(this.buttonEnableVC, gbc_buttonEnableVC);
 		
-		JLabel lblNewLabel_3 = new JLabel("PositionController");
+		JLabel lblNewLabel_3 = new JLabel("MPP Tracker");
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		lblNewLabel_3.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNewLabel_3.setPreferredSize(new Dimension(100, 20));
@@ -284,42 +283,15 @@ public class JPanelConfig extends JPanel implements ActionListener, I_PCDI_Liste
 		gbc_circlePC.fill = GridBagConstraints.BOTH;
 		panel_1.add(this.circlePC, gbc_circlePC);
 		
-		this.buttonEnablePC = new JButton("enable");
-		this.buttonEnablePC.addActionListener(this);
-		this.buttonEnablePC.setPreferredSize(new Dimension(100, 20));
-		GridBagConstraints gbc_buttonEnablePC = new GridBagConstraints();
-		gbc_buttonEnablePC.fill = GridBagConstraints.BOTH;
-		gbc_buttonEnablePC.gridx = 2;
-		gbc_buttonEnablePC.gridy = 0;
-		panel_1.add(this.buttonEnablePC, gbc_buttonEnablePC);
-		
-		JLabel lblNewLabel_4 = new JLabel("Powerstage");
-		lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 9));
-		lblNewLabel_4.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel_4.setPreferredSize(new Dimension(100, 20));
-		GridBagConstraints gbc_lblNewLabel_4 = new GridBagConstraints();
-		gbc_lblNewLabel_4.fill = GridBagConstraints.BOTH;
-		gbc_lblNewLabel_4.insets = new Insets(0, 10, 0, 5);
-		gbc_lblNewLabel_4.gridx = 9;
-		gbc_lblNewLabel_4.gridy = 0;
-		panel_1.add(lblNewLabel_4, gbc_lblNewLabel_4);
-		
-		this.circlePWRST = new GraphicJPanel(new Circle(2,4,15));
-		GridBagConstraints gbc_circlePWRST = new GridBagConstraints();
-		gbc_circlePWRST.insets = new Insets(0, 5, 0, 10);
-		gbc_circlePWRST.gridx = 10;
-		gbc_circlePWRST.gridy = 0;
-		gbc_circlePWRST.fill = GridBagConstraints.BOTH;
-		panel_1.add(this.circlePWRST, gbc_circlePWRST);
-		
-		this.buttonResetPwrStg = new JButton("reset");
-		this.buttonResetPwrStg.addActionListener(this);
-		this.buttonResetPwrStg.setPreferredSize(new Dimension(100, 20));
-		GridBagConstraints gbc_buttonResetPwrStg = new GridBagConstraints();
-		gbc_buttonResetPwrStg.fill = GridBagConstraints.BOTH;
-		gbc_buttonResetPwrStg.gridx = 11;
-		gbc_buttonResetPwrStg.gridy = 0;
-		panel_1.add(this.buttonResetPwrStg, gbc_buttonResetPwrStg);
+		this.buttonEnableMPP = new JButton("enable");
+		this.buttonEnableMPP.addActionListener(this);
+		this.buttonEnableMPP.setPreferredSize(new Dimension(100, 20));
+		GridBagConstraints gbc_buttonEnableMPP = new GridBagConstraints();
+		gbc_buttonEnableMPP.insets = new Insets(0, 0, 0, 5);
+		gbc_buttonEnableMPP.fill = GridBagConstraints.BOTH;
+		gbc_buttonEnableMPP.gridx = 2;
+		gbc_buttonEnableMPP.gridy = 0;
+		panel_1.add(this.buttonEnableMPP, gbc_buttonEnableMPP);
 		
 		panel_2 = new JPanel();
 		GridBagConstraints gbc_panel_2 = new GridBagConstraints();
@@ -338,7 +310,7 @@ public class JPanelConfig extends JPanel implements ActionListener, I_PCDI_Liste
 		
 		buttonEmergencyStop = new JButton("Emergency Stop");
 		buttonEmergencyStop.addActionListener(this);
-		buttonEmergencyStop.setBackground(new Color(250, 128, 114));
+		buttonEmergencyStop.setBackground(Color.LIGHT_GRAY);
 		GridBagConstraints gbc_btnEmergencyStop = new GridBagConstraints();
 		gbc_btnEmergencyStop.insets = new Insets(10, 0, 10, 0);
 		gbc_btnEmergencyStop.fill = GridBagConstraints.BOTH;
@@ -385,28 +357,23 @@ public class JPanelConfig extends JPanel implements ActionListener, I_PCDI_Liste
 				this.buttonRefresh.setEnabled(false);
 				this.buttonOpenClose.setText("close");
 			}
-		}
-		else if(e.getSource() == this.buttonResetPwrStg) {
-			infoConsole.append("[CMD] reset power stage\n");
-			this.pcdi.sendCommand(PCDI_COMMANDS.RESET_PWRSTG, deviceId);
-		}
-		else if(e.getSource() == this.buttonEmergencyStop) {
+		}else if(e.getSource() == this.buttonEmergencyStop) {
 			infoConsole.append("[CMD] emergency stop\n");
 			this.pcdi.sendCommand(PCDI_COMMANDS.EMERGENCY_STOP, deviceId);
 		}
-		else if(e.getSource() == this.buttonEnableCC) {
+		else if(e.getSource() == this.buttonResetComp) {
 			PCDI_Parameter<?> tmp;
 			if(this.ccIsEnabled) tmp = new PCDI_ParameterInt(19, PCDI_TYPES.INT,(short) 0);
 			else tmp =  new PCDI_ParameterInt(19, PCDI_TYPES.INT,(short) 1);
 			pcdi.writeParameter(tmp, this.deviceId);
 		}
-		else if(e.getSource() == this.buttonEnableSC) {
+		else if(e.getSource() == this.buttonEnableVC) {
 			PCDI_Parameter<?> tmp;
 			if(this.scIsEnabled) tmp = new PCDI_ParameterInt(32, PCDI_TYPES.INT,(short) 0);
 			else tmp =  new PCDI_ParameterInt(32, PCDI_TYPES.INT,(short) 1);
 			pcdi.writeParameter(tmp, this.deviceId);
 		}
-		else if(e.getSource() == this.buttonEnablePC) {
+		else if(e.getSource() == this.buttonEnableMPP) {
 			PCDI_Parameter<?> tmp;
 			if(this.pcIsEnabled) tmp = new PCDI_ParameterInt(44, PCDI_TYPES.INT,(short) 0);
 			else tmp =  new PCDI_ParameterInt(44, PCDI_TYPES.INT,(short) 1);
@@ -465,45 +432,37 @@ public class JPanelConfig extends JPanel implements ActionListener, I_PCDI_Liste
 		else if (valueNr == 19) {
 			if((byte)parameter.getValue()>0) {
 				this.ccIsEnabled = true;
-				this.buttonEnableCC.setText("disable");
+				this.buttonResetComp.setText("disable");
 				this.circleCC.setShapeColorActive();
 			}
 			else {
 				this.ccIsEnabled = false;
-				this.buttonEnableCC.setText("enable");
+				this.buttonResetComp.setText("enable");
 				this.circleCC.setShapeColorInactive();
 			}
 		}
 		else if (valueNr == 32) {
 			if((byte)parameter.getValue()>0) {
 				this.scIsEnabled = true;
-				this.buttonEnableSC.setText("disable");
+				this.buttonEnableVC.setText("disable");
 				this.circleSC.setShapeColorActive();
 			}
 			else {
 				this.scIsEnabled = false;
-				this.buttonEnableSC.setText("enable");
+				this.buttonEnableVC.setText("enable");
 				this.circleSC.setShapeColorInactive();
 			}
 		}
 		else if (valueNr == 44) {
 			if((byte)parameter.getValue()>0) {
 				this.pcIsEnabled = true;
-				this.buttonEnablePC.setText("disable");
+				this.buttonEnableMPP.setText("disable");
 				this.circlePC.setShapeColorActive();
 			}
 			else {
 				this.pcIsEnabled = false;
-				this.buttonEnablePC.setText("enable");
+				this.buttonEnableMPP.setText("enable");
 				this.circlePC.setShapeColorInactive();
-			}
-		}
-		else if (valueNr == 54) {
-			if((byte)parameter.getValue()==1) {
-				this.circlePWRST.setShapeColorActive();
-			}
-			else {
-				this.circlePWRST.setShapeColorInactive();
 			}
 		}
 	}
@@ -531,10 +490,9 @@ public class JPanelConfig extends JPanel implements ActionListener, I_PCDI_Liste
 	}
 	
 	private void disableGUI() {
-		this.buttonEnableCC.setEnabled(false);
-		this.buttonEnableSC.setEnabled(false);
-		this.buttonEnablePC.setEnabled(false);
-		this.buttonResetPwrStg.setEnabled(false);
+		this.buttonResetComp.setEnabled(false);
+		this.buttonEnableVC.setEnabled(false);
+		this.buttonEnableMPP.setEnabled(false);
 		this.labelConnectionState.setText(" not connected ");
 		this.buttonOpenClose.setText("open");
 		this.buttonOpenClose.setEnabled(true);
@@ -543,10 +501,9 @@ public class JPanelConfig extends JPanel implements ActionListener, I_PCDI_Liste
 	}				
 	
 	private void enableGUI() {
-		this.buttonEnableCC.setEnabled(true);
-		this.buttonEnableSC.setEnabled(true);
-		this.buttonEnablePC.setEnabled(true);
-		this.buttonResetPwrStg.setEnabled(true);
+		this.buttonResetComp.setEnabled(true);
+		this.buttonEnableVC.setEnabled(true);
+		this.buttonEnableMPP.setEnabled(true);
 	}
 
 	@Override
@@ -577,7 +534,6 @@ public class JPanelConfig extends JPanel implements ActionListener, I_PCDI_Liste
 			this.circleCC.setShapeColorInactive();
 			this.circleSC.setShapeColorInactive();
 			this.circlePC.setShapeColorInactive();
-			this.circlePWRST.setShapeColorInactive();
 			this.disableGUI();
 			this.infoConsole.append("[INFO] disconnected\n");
 			this.circleConnected.setShapeColorInactive();

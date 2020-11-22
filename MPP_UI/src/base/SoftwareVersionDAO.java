@@ -38,7 +38,7 @@ public class SoftwareVersionDAO {
 	
 	@Override
 	public String toString() {
-		return "FOCPSM v" + Short.toString(this.major) + "." + Short.toString(this.minor) + " (" + Short.toString(this.day) + "." + Short.toString(this.month) + "." + Short.toString(this.year) + ")";
+		return "MPP v" + Short.toString(this.major) + "." + Short.toString(this.minor) + " (" + Short.toString(this.day) + "." + Short.toString(this.month) + "." + Short.toString(this.year) + ")";
 	}
 	
 }
