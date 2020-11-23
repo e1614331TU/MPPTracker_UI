@@ -219,7 +219,7 @@ public class PCDI_Parser {
 		
 	}
 	/**
-	 * this method is used to parse an incoming message into OscilloscopeState
+	 * parses an incoming message into OscilloscopeState
 	 * @param msg the incoming message
 	 * @return the enum oscilloscope-state
 	 */
@@ -227,9 +227,9 @@ public class PCDI_Parser {
 		return PCDI_OSCILLOSCOPE_STATE.fromByte(msg.getData().get(0));
 	}
 	/**
-	 * this method is used to parse an incoming message into an error
-	 * @param msg incoming message
-	 * @return error type
+	 * parses an incoming message into an error
+	 * @param PCDI_Message msg
+	 * @return PCDI_ERROR_TYPE
 	 */
 	public static PCDI_ERROR_TYPE parseRxError(PCDI_Message msg) {
 		return PCDI_ERROR_TYPE.fromByte(msg.getData().get(0));
@@ -245,27 +245,47 @@ public class PCDI_Parser {
 	}
 	
 	/**
-	 * this method is used to parse an incoming heartbeat message int a list of controller-enable-parameters (type byte)
+	 * parses an incoming heartbeat message int a list of controller-enable-parameters (type byte)
 	 * @param msg the incoming message
 	 * @return the contained controller-enable-parameters
 	 */
 	public static List<PCDI_Parameter<Byte>> parseHearbeat(PCDI_Message msg){
 		List<PCDI_Parameter<Byte>> res = new ArrayList<PCDI_Parameter<Byte>>();
-		List<Byte> data=msg.getData();
-		byte value=data.get(4);
+		List<Byte> data = msg.getData();
+		
+		// voltage controller is enabled
+		byte value = data.get(0);
 		PCDI_Parameter<Byte> param = new PCDI_ParameterByte(19,PCDI_TYPES.BYTE, value);
 		res.add(param);
 		
-		value=data.get(5);
-		param = new PCDI_ParameterByte(32,PCDI_TYPES.BYTE, value);
+		// comperator triggered
+		value = data.get(1);
+		param = new PCDI_ParameterByte(18,PCDI_TYPES.BYTE, value);
 		res.add(param);
 		
-		value=data.get(6);
-		param = new PCDI_ParameterByte(44,PCDI_TYPES.BYTE, value);
+		// forced pwm enabled
+		value = data.get(2);
+		param = new PCDI_ParameterByte(22,PCDI_TYPES.BYTE, value);
 		res.add(param);
 		
-		value=data.get(7);
-		param = new PCDI_ParameterByte(54,PCDI_TYPES.BYTE, value);
+		// voltage controller state
+		value = data.get(3);
+		param = new PCDI_ParameterByte(24,PCDI_TYPES.BYTE, value);
+		res.add(param);
+		
+		// mpp controller enabled
+		value = data.get(4);
+		param = new PCDI_ParameterByte(25,PCDI_TYPES.BYTE, value);
+		res.add(param);
+		
+		// forced output voltage enabled
+		value = data.get(5);
+		param = new PCDI_ParameterByte(26,PCDI_TYPES.BYTE, value);
+		res.add(param);
+		
+		// MPP controller state
+		value = data.get(6);
+		param = new PCDI_ParameterByte(28,PCDI_TYPES.BYTE, value);
 		res.add(param);
 		
 		return res;

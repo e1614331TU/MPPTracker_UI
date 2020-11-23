@@ -64,13 +64,13 @@ public class JPanelConfig extends JPanel implements ActionListener, I_PCDI_Liste
 	
 	// circles
 	private GraphicJPanel circleConnected;
-	private GraphicJPanel circleCC;
-	private GraphicJPanel circlePC;
-	private GraphicJPanel circleSC;
+	private GraphicJPanel circleCOMP;
+	private GraphicJPanel circleMPP;
+	private GraphicJPanel circleVC;
 	
-	private boolean ccIsEnabled = false;
-	private boolean scIsEnabled = false;
-	private boolean pcIsEnabled = false;
+	private boolean compIsEnabled = false;
+	private boolean vcIsEnabled = false;
+	private boolean mppIsEnabled = false;
 		
 	private JPanel panel_1;
 	private JLabel labelSWVersion;
@@ -218,13 +218,13 @@ public class JPanelConfig extends JPanel implements ActionListener, I_PCDI_Liste
 		gbc_lblNewLabel_1.gridy = 0;
 		panel_1.add(lblNewLabel_1, gbc_lblNewLabel_1);
 		
-		this.circleCC = new GraphicJPanel(new Circle(2,4,15));
+		this.circleCOMP = new GraphicJPanel(new Circle(2,4,15));
 		GridBagConstraints gbc_circleCC = new GridBagConstraints();
 		gbc_circleCC.insets = new Insets(0, 5, 0, 10);
 		gbc_circleCC.gridx = 7;
 		gbc_circleCC.gridy = 0;
 		gbc_circleCC.fill = GridBagConstraints.BOTH;
-		panel_1.add(this.circleCC, gbc_circleCC);
+		panel_1.add(this.circleCOMP, gbc_circleCC);
 		
 		this.buttonResetComp = new JButton("reset");
 		this.buttonResetComp.addActionListener(this);
@@ -246,13 +246,13 @@ public class JPanelConfig extends JPanel implements ActionListener, I_PCDI_Liste
 		gbc_lblNewLabel_2.gridy = 0;
 		panel_1.add(lblNewLabel_2, gbc_lblNewLabel_2);
 		
-		this.circleSC = new GraphicJPanel(new Circle(2,4,15));
+		this.circleVC = new GraphicJPanel(new Circle(2,4,15));
 		GridBagConstraints gbc_circleSC = new GridBagConstraints();
 		gbc_circleSC.insets = new Insets(0, 5, 0, 10);
 		gbc_circleSC.gridx = 4;
 		gbc_circleSC.gridy = 0;
 		gbc_circleSC.fill = GridBagConstraints.BOTH;
-		panel_1.add(this.circleSC, gbc_circleSC);
+		panel_1.add(this.circleVC, gbc_circleSC);
 		
 		this.buttonEnableVC = new JButton("enable");
 		this.buttonEnableVC.addActionListener(this);
@@ -275,13 +275,13 @@ public class JPanelConfig extends JPanel implements ActionListener, I_PCDI_Liste
 		gbc_lblNewLabel_3.gridy = 0;
 		panel_1.add(lblNewLabel_3, gbc_lblNewLabel_3);
 		
-		this.circlePC = new GraphicJPanel(new Circle(2,4,15));
+		this.circleMPP = new GraphicJPanel(new Circle(2,4,15));
 		GridBagConstraints gbc_circlePC = new GridBagConstraints();
 		gbc_circlePC.insets = new Insets(0, 5, 0, 10);
 		gbc_circlePC.gridx = 1;
 		gbc_circlePC.gridy = 0;
 		gbc_circlePC.fill = GridBagConstraints.BOTH;
-		panel_1.add(this.circlePC, gbc_circlePC);
+		panel_1.add(this.circleMPP, gbc_circlePC);
 		
 		this.buttonEnableMPP = new JButton("enable");
 		this.buttonEnableMPP.addActionListener(this);
@@ -363,20 +363,20 @@ public class JPanelConfig extends JPanel implements ActionListener, I_PCDI_Liste
 		}
 		else if(e.getSource() == this.buttonResetComp) {
 			PCDI_Parameter<?> tmp;
-			if(this.ccIsEnabled) tmp = new PCDI_ParameterInt(19, PCDI_TYPES.INT,(short) 0);
-			else tmp =  new PCDI_ParameterInt(19, PCDI_TYPES.INT,(short) 1);
+			if(this.compIsEnabled) tmp = new PCDI_ParameterInt(18, PCDI_TYPES.INT,(short) 0);
+			else tmp =  new PCDI_ParameterInt(18, PCDI_TYPES.INT,(short) 1);
 			pcdi.writeParameter(tmp, this.deviceId);
 		}
 		else if(e.getSource() == this.buttonEnableVC) {
 			PCDI_Parameter<?> tmp;
-			if(this.scIsEnabled) tmp = new PCDI_ParameterInt(32, PCDI_TYPES.INT,(short) 0);
-			else tmp =  new PCDI_ParameterInt(32, PCDI_TYPES.INT,(short) 1);
+			if(this.vcIsEnabled) tmp = new PCDI_ParameterInt(17, PCDI_TYPES.INT,(short) 0);
+			else tmp =  new PCDI_ParameterInt(17, PCDI_TYPES.INT,(short) 1);
 			pcdi.writeParameter(tmp, this.deviceId);
 		}
 		else if(e.getSource() == this.buttonEnableMPP) {
 			PCDI_Parameter<?> tmp;
-			if(this.pcIsEnabled) tmp = new PCDI_ParameterInt(44, PCDI_TYPES.INT,(short) 0);
-			else tmp =  new PCDI_ParameterInt(44, PCDI_TYPES.INT,(short) 1);
+			if(this.mppIsEnabled) tmp = new PCDI_ParameterInt(25, PCDI_TYPES.INT,(short) 0);
+			else tmp =  new PCDI_ParameterInt(25, PCDI_TYPES.INT,(short) 1);
 			pcdi.writeParameter(tmp, this.deviceId);
 		}
 		
@@ -429,40 +429,40 @@ public class JPanelConfig extends JPanel implements ActionListener, I_PCDI_Liste
 			this.swVersion.setYear((short) parameter.getValue());
 			this.labelSWVersion.setText(this.swVersion.toString());
 		}
-		else if (valueNr == 19) {
+		else if (valueNr == 18) {
 			if((byte)parameter.getValue()>0) {
-				this.ccIsEnabled = true;
+				this.compIsEnabled = true;
 				this.buttonResetComp.setText("disable");
-				this.circleCC.setShapeColorActive();
+				this.circleCOMP.setShapeColorActive();
 			}
 			else {
-				this.ccIsEnabled = false;
+				this.compIsEnabled = false;
 				this.buttonResetComp.setText("enable");
-				this.circleCC.setShapeColorInactive();
+				this.circleCOMP.setShapeColorInactive();
 			}
 		}
-		else if (valueNr == 32) {
+		else if (valueNr == 17) {
 			if((byte)parameter.getValue()>0) {
-				this.scIsEnabled = true;
+				this.vcIsEnabled = true;
 				this.buttonEnableVC.setText("disable");
-				this.circleSC.setShapeColorActive();
+				this.circleVC.setShapeColorActive();
 			}
 			else {
-				this.scIsEnabled = false;
+				this.vcIsEnabled = false;
 				this.buttonEnableVC.setText("enable");
-				this.circleSC.setShapeColorInactive();
+				this.circleVC.setShapeColorInactive();
 			}
 		}
-		else if (valueNr == 44) {
+		else if (valueNr == 25) {
 			if((byte)parameter.getValue()>0) {
-				this.pcIsEnabled = true;
+				this.mppIsEnabled = true;
 				this.buttonEnableMPP.setText("disable");
-				this.circlePC.setShapeColorActive();
+				this.circleMPP.setShapeColorActive();
 			}
 			else {
-				this.pcIsEnabled = false;
+				this.mppIsEnabled = false;
 				this.buttonEnableMPP.setText("enable");
-				this.circlePC.setShapeColorInactive();
+				this.circleMPP.setShapeColorInactive();
 			}
 		}
 	}
@@ -531,9 +531,9 @@ public class JPanelConfig extends JPanel implements ActionListener, I_PCDI_Liste
 			}
 		}
 		else {
-			this.circleCC.setShapeColorInactive();
-			this.circleSC.setShapeColorInactive();
-			this.circlePC.setShapeColorInactive();
+			this.circleCOMP.setShapeColorInactive();
+			this.circleVC.setShapeColorInactive();
+			this.circleMPP.setShapeColorInactive();
 			this.disableGUI();
 			this.infoConsole.append("[INFO] disconnected\n");
 			this.circleConnected.setShapeColorInactive();
