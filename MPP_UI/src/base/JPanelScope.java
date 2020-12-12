@@ -140,7 +140,7 @@ public class JPanelScope extends JPanel implements ActionListener, I_PCDI_Listen
 	private GridBagConstraints gbc_lbl_drpdwn_value_editable_1;
 	private JButton buttonSetValue00toOne;
 	
-	//variable um zu erkennen welches Scope aktuell läuft (ist die abtastzeit hoch (>10ms/Parameter), 
+	//variable um zu erkennen welches Scope aktuell lï¿½uft (ist die abtastzeit hoch (>10ms/Parameter), 
 	//so werden die Parameter zyklisch ausgelesen, ist die abtastzeit geringer, so wird die Scope-Implementierung des Protokolls verwendet
 	private SCOPE_TYPE scopeType=SCOPE_TYPE.CYCLE_READ;
 	private int oversampling=1;
@@ -950,10 +950,11 @@ public class JPanelScope extends JPanel implements ActionListener, I_PCDI_Listen
 	}
 	
 	public void setActiveState(boolean state) {
-		this.isActive = state;
+		/*this.isActive = state;
 		if(!state) {
 			this.stopScope();
-		}
+		}*/
+		return;
 	}
 	
 	@Override

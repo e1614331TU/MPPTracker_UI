@@ -33,6 +33,7 @@ import comm.PCDI_ERROR_TYPE;
 import comm.PCDI_OSCILLOSCOPE_STATE;
 import comm.PCDI_OscilloscopeData;
 import comm.PCDI_Parameter;
+import comm.PCDI_ParameterByte;
 import comm.PCDI_ParameterFloat;
 import comm.PCDI_ParameterInfo;
 import comm.PCDI_ParameterInt;
@@ -93,7 +94,7 @@ public class JPanelOverview extends JPanel implements I_PCDI_Listener,  KeyListe
 		this.deviceId = deviceId;
 		this.infoConsole = infoConsole;
 		
-		//this.cyclicVals.add(21); // gamma_mech
+		this.cyclicVals.add(22); // gamma_mech
 
 		
 		this.pcdi.registerListener(this);
@@ -316,7 +317,7 @@ public class JPanelOverview extends JPanel implements I_PCDI_Listener,  KeyListe
 	@Override
 	public void notifyParameterRead(PCDI_Parameter<?> parameter, int deviceId) {
 		int valueNr = parameter.getValueNumber();
-		if(valueNr == 45 && this.txt_pc_setPos_focused == false) {
+		if(valueNr == 22 && this.txt_pc_setPos_focused == false) {
 			this.textField_pc_setPos.setText(parameter.getValue().toString());
 		}
 		else if(valueNr == 21) {
@@ -376,7 +377,7 @@ public class JPanelOverview extends JPanel implements I_PCDI_Listener,  KeyListe
 	    	 if(e.getSource() == this.textField_pc_setPos) {
 	    		if(!this.textField_pc_setPos.getText().isEmpty()) {
 		 			PCDI_Parameter<?> tmp;
-					tmp = new PCDI_ParameterFloat(45, PCDI_TYPES.FLOAT, 0.0f);
+					tmp = new PCDI_ParameterByte(22, PCDI_TYPES.BYTE, (byte)0);
 					tmp.setValue(this.textField_pc_setPos.getText());
 					this.pcdi.writeParameter(tmp, this.deviceId);
 	    		}
@@ -391,10 +392,16 @@ public class JPanelOverview extends JPanel implements I_PCDI_Listener,  KeyListe
 
 	@Override
 	public void focusGained(FocusEvent e) {
+		if(e.getSource() == this.textField_pc_setPos) {
+			this.txt_pc_setPos_focused = true;
+		}
 	}
 
 	@Override
 	public void focusLost(FocusEvent e) {
+		if(e.getSource() == this.textField_pc_setPos) {
+			this.txt_pc_setPos_focused = false;
+		}
 	}
 
 }
