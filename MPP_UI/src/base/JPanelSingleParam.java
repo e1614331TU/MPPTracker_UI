@@ -6,6 +6,8 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -36,7 +38,7 @@ import comm.PCDI_TYPES;
 * this class is needed by the JPanelParams class. For each Parameter
 * an instance of JPanelSingleParam is added to the JPanelParams.
 */
-public class JPanelSingleParam extends JPanel implements ActionListener, I_PCDI_Listener{
+public class JPanelSingleParam extends JPanel implements ActionListener, I_PCDI_Listener, FocusListener{
 
 	/**
 	 * 
@@ -57,6 +59,8 @@ public class JPanelSingleParam extends JPanel implements ActionListener, I_PCDI_
 	
 	private JTextArea infoConsole;
 	private JTextField textField;
+	
+	private boolean txt_focused = false;
 	/**
 	* this method is the constructor
 	* @param parameter contains information about the parameterInfos (permissions, unit,..)
@@ -87,6 +91,11 @@ public class JPanelSingleParam extends JPanel implements ActionListener, I_PCDI_
 		}
 		
 	}
+	
+	public boolean isTxt_focused() {
+		return txt_focused;
+	}
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == this.btnReadParam) {
@@ -120,7 +129,11 @@ public class JPanelSingleParam extends JPanel implements ActionListener, I_PCDI_
 	public void notifyParameterRead(PCDI_Parameter<?> parameter, int deviceId) {
 		if(parameter.getValueNumber()==this.param.getValueNumber()) {
 			this.actValue.setText(parameter.getValue().toString());
-			this.Value.setText(parameter.getValue().toString());
+			if(this.txt_focused == false)
+				this.Value.setText(parameter.getValue().toString());
+				
+			//if(this.parameterInfo.getName().contentEquals("MPPen") )
+			//	System.out.println("Value read "+ this.parameterInfo.getName() + " " + parameter.getValue().toString() + " focused " + this.txt_focused);
 		}
 	}
 
@@ -163,6 +176,7 @@ public class JPanelSingleParam extends JPanel implements ActionListener, I_PCDI_
 		gbc_Value.gridy = 0;
 		add(Value, gbc_Value);
 		Value.setColumns(10);
+		this.Value.addFocusListener(this);
 		
 		actValue = new JTextField();
 		actValue.setEditable(false);
@@ -215,7 +229,21 @@ public class JPanelSingleParam extends JPanel implements ActionListener, I_PCDI_
 	@Override
 	public void notifyConnectionChanges(boolean isConnected) {
 	}
+	@Override
+	public void focusGained(FocusEvent e) {
+		if(e.getSource() == this.Value) {
+			this.txt_focused = true;
+			//System.out.println("focused true" + parameterInfo.getName() );
+		}
+	}
 
+	@Override
+	public void focusLost(FocusEvent e) {
+		if(e.getSource() == this.Value) {
+			this.txt_focused = false;
+			//System.out.println("focused false" + parameterInfo.getName() );
+		}
+	}
 
 	
 	

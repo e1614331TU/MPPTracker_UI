@@ -54,6 +54,7 @@ public class MainWindow extends JFrame implements ActionListener, I_PCDI_Listene
 	private GridBagLayout layout;
 	private JTabbedPane tabbedPane;
 	private JPanelOverview panelOverview;
+	private JPanelPowerController panelPowerController;
 	private JPanelScope panelScope;
 	private JPanelParams panelParams;
 	
@@ -154,12 +155,16 @@ public class MainWindow extends JFrame implements ActionListener, I_PCDI_Listene
 		this.panelOverview = new JPanelOverview(this.pcdi,this.deviceId,this.infoConsole);
 		tabbedPane.addTab("Overview", null, this.panelOverview, null);
 		
+		panelPowerController = new JPanelPowerController(this.pcdi,this.deviceId,this.infoConsole);
+		tabbedPane.addTab("Controller", null, panelPowerController, null);
+		
 		panelScope = new JPanelScope(this.pcdi,this.deviceId,this.infoConsole);
 		tabbedPane.addTab("Scope", null, panelScope, null);
 		
 		panelParams = new JPanelParams(this.pcdi,this.deviceId,this.infoConsole);
 		tabbedPane.addTab("Parameters", null, panelParams, null);
 		
+		this.registerListener(panelPowerController);
 		this.registerListener(panelScope);
 		this.registerListener(panelParams);
 		
