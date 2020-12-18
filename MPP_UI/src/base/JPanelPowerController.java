@@ -7,6 +7,8 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -56,7 +58,7 @@ import javax.swing.JRadioButton;
 * this is the class which handles the Positioncontroller Panel.
 * It is responsible for configuring the positioncontroller-parameters
 */
-public class JPanelPowerController extends JPanel implements ActionListener, I_PCDI_Listener, I_Tab_Listener {
+public class JPanelPowerController extends JPanel implements ActionListener, I_PCDI_Listener, I_Tab_Listener, FocusListener {
 	// ----------CONFIG SOCPE -----------------//
 
 	private Color color1 = Color.magenta;
@@ -140,6 +142,7 @@ public class JPanelPowerController extends JPanel implements ActionListener, I_P
 	private JTextField txtValueInfo03;
 	private JButton buttonSetValue03;
 	private JButton buttonReadValue03;
+	private boolean txt_focusedtxtValue00 = false;
 
 	private JButton buttonSetDeltaZero;
 	private JButton buttonReadAll;
@@ -221,7 +224,7 @@ public class JPanelPowerController extends JPanel implements ActionListener, I_P
 		// SET VALUE
 		this.makeEditableValues();
 		// Start Stepresponse
-		this.buttonStartStepResponse = new JButton("StepResponse VC Fast");
+		this.buttonStartStepResponse = new JButton("StepResponse VC");
 		GridBagConstraints gbc_buttonStartStepResponse = new GridBagConstraints();
 		gbc_buttonStartStepResponse.fill = GridBagConstraints.HORIZONTAL;
 		gbc_buttonStartStepResponse.insets = new Insets(0, 0, 5, 5);
@@ -526,9 +529,9 @@ public class JPanelPowerController extends JPanel implements ActionListener, I_P
 				this.undersampling = (int)temp;
 			}else {
 				this.scopeType = SCOPE_TYPE.CYCLE_READ;
-				if(sampleTimeDouble<60) {
-					this.infoConsole.append("Sampletime set to 60ms!\n");
-					sampleTimeDouble=60;
+				if(sampleTimeDouble<70) {
+					this.infoConsole.append("Sampletime set to 70ms!\n");
+					sampleTimeDouble=70;
 				}
 				this.sampleTime = (int) sampleTimeDouble;
 				this.txt_sampleTime.setText(Integer.toString(this.sampleTime));
@@ -611,7 +614,7 @@ public class JPanelPowerController extends JPanel implements ActionListener, I_P
 
 	@Override
 	public void notifyParameterWrite(PCDI_Parameter<?> parameter, int deviceId) {
-		if (parameter.getValueNumber() == this.paramNr00.getValueNumber() && deviceId == this.deviceId) {
+		if (parameter.getValueNumber() == this.paramNr00.getValueNumber() && !this.txt_focusedtxtValue00 && deviceId == this.deviceId) {
 			double value = Double.parseDouble(parameter.getValue().toString());
 			this.txtValueInfo00.setText(Double.toString(value));
 		} else if (parameter.getValueNumber() == this.paramNr01.getValueNumber() && deviceId == this.deviceId) {
@@ -649,7 +652,7 @@ public class JPanelPowerController extends JPanel implements ActionListener, I_P
 
 	@Override
 	public void notifyParameterRead(PCDI_Parameter<?> parameter, int deviceId) {
-		if (parameter.getValueNumber() == this.paramNr00.getValueNumber() && deviceId == this.deviceId) {
+		if (parameter.getValueNumber() == this.paramNr00.getValueNumber() && !this.txt_focusedtxtValue00 && deviceId == this.deviceId) {
 			double value = Double.parseDouble(parameter.getValue().toString());
 			this.txtValue00.setText(Double.toString(value));
 			this.txtValueInfo00.setText(Double.toString(value));
@@ -760,7 +763,7 @@ public class JPanelPowerController extends JPanel implements ActionListener, I_P
 			if(this.scopeType == SCOPE_TYPE.FAST_SCOPE) {
 				scopeDatax1.add((double) scopeDatay1.size() / 10 * this.undersampling);
 			}else if(this.scopeType == SCOPE_TYPE.CYCLE_READ) {
-				if(this.oneshot == true && scopeDatax1.size()>this.sampleDepth) {
+				if(this.oneshot == true && scopeDatax1.size()>=this.sampleDepth) {
 					this.StopScope();
 				} else if(scopeDatax1.size()>=this.sampleDepth) {
 					this.scopeDatay1.remove(0);
@@ -1276,5 +1279,21 @@ public class JPanelPowerController extends JPanel implements ActionListener, I_P
 
 	@Override
 	public void notifyConnectionChanges(boolean isConnected) {
+	}
+	
+	@Override
+	public void focusGained(FocusEvent e) {
+		if(e.getSource() == this.txtValue00) {
+			this.txt_focusedtxtValue00 = true;
+			//System.out.println("focused true" + parameterInfo.getName() );
+		}
+	}
+
+	@Override
+	public void focusLost(FocusEvent e) {
+		if(e.getSource() == this.txtValue00) {
+			this.txt_focusedtxtValue00 = false;
+			//System.out.println("focused false" + parameterInfo.getName() );
+		}
 	}
 }
