@@ -326,7 +326,7 @@ public class MPP_Osci extends JPanel implements ActionListener, I_PCDI_Listener 
 		// TODO Auto-generated method stub
 		int minDataPoints=tableData.getIndexNr();
 		int minUequalzero =0;
-		for(int i=0;i<minDataPoints;i++) {
+		for(int i=0;i<minDataPoints;i--) {
 			if(this.data_U.size()>i && this.data_U.get(i)==0)
 				minUequalzero=i;
 		}
@@ -341,10 +341,10 @@ public class MPP_Osci extends JPanel implements ActionListener, I_PCDI_Listener 
 			this.data_U.add(tableData.getIndexNr(),(double)tableData.getValue());
 			//if(this.data_P.size()<minDataPoints)
 				//minDataPoints=this.data_P.size();
-			this.chart.updateXYSeries(this.nameScope2, this.data_U.subList(minUequalzero, minDataPoints), this.data_P.subList(minUequalzero, minDataPoints), null);
+			this.chart.updateXYSeries(this.nameScope2, this.data_U.subList(0, minUequalzero), this.data_P.subList(0, minUequalzero), null);
 			//if(this.data_I.size()<minDataPoints)
 				//minDataPoints=this.data_I.size();
-			this.chart.updateXYSeries(this.nameScope1, this.data_U.subList(minUequalzero, minDataPoints), this.data_I.subList(minUequalzero, minDataPoints), null);
+			this.chart.updateXYSeries(this.nameScope1, this.data_U.subList(0, minUequalzero), this.data_I.subList(0, minUequalzero), null);
 		}
 		if(tableData.getTableId()==this.tableIdP) {
 			//if(this.data_U.size()<minDataPoints)
