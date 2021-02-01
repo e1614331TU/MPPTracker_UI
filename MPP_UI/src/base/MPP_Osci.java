@@ -181,8 +181,8 @@ public class MPP_Osci extends JPanel implements ActionListener, I_PCDI_Listener 
 		if(this.cyclicTimerSlow==null) {
 			TimerTask task = new TimerTask() {
 		        public void run() {
-		        	pcdi.getTableInfo(0, deviceId);
 		        	pcdi.getTableInfo(1, deviceId);
+		        	pcdi.getTableInfo(0, deviceId);
 		        	pcdi.getTableInfo(2, deviceId);
 		        }
 		    };
