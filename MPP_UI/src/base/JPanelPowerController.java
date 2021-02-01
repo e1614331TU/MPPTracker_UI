@@ -90,8 +90,8 @@ public class JPanelPowerController extends JPanel implements ActionListener, I_P
 	private int valNr1 = 14; //Uin
 	private int valNr2 = 15; //Iin
 	//TODO adapt Pin valNr
-	private int valNr3 = 15; //Pin 
-	private int valNr4 = 23; //delta set
+	private int valNr3 = 32; //Pin 
+	private int valNr4 = 31; //delta set
 	private int valNr5 = 21; //delta act
 	private int valNr6 = 16; //Uout
 	private int valNr7 = 25; //not used
