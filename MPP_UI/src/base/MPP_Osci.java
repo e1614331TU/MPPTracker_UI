@@ -326,7 +326,7 @@ public class MPP_Osci extends JPanel implements ActionListener, I_PCDI_Listener 
 		// TODO Auto-generated method stub
 		int minDataPoints=tableData.getIndexNr();
 		int minUequalzero =0;
-		for(int i=0;i<minDataPoints;i++) {
+		for(int i=1;i<minDataPoints;i++) {
 			if(this.data_U.get(i)==0)
 				minUequalzero=i;
 		}
