@@ -57,8 +57,8 @@ public class MPP_Osci extends JPanel implements ActionListener, I_PCDI_Listener 
 	
 	private String nameScope1 = "I/U curve";
 	private String nameScope2 = "P";
-	private String nameScope3 = "act. Point";
-	private String nameScope4 = "act. Point";
+	private String nameScope3 = "act. Point I";
+	private String nameScope4 = "act. Point P";
 	private String nameYAxisScope1 = "I/A";
 	private String nameYAxisScope2 = "P/W";
 	
@@ -106,20 +106,20 @@ public class MPP_Osci extends JPanel implements ActionListener, I_PCDI_Listener 
 		
 		XYSeries2 = this.chart.addSeries(this.nameScope2, new double[] { 0.0 }, new double[] { 0.0 }, null);
 		XYSeries2.setYAxisGroup(1);
-		XYSeries2.setMarker(new None());;
+		XYSeries2.setMarker(new None());
 		//XYSeries2.setLineWidth(0.8f);
 		XYSeries2.setLineColor(color2);
 		
 		XYSeries3 = this.chart.addSeries(this.nameScope3, new double[] { 0.0 }, new double[] { 0.0 }, null);
 		XYSeries3.setYAxisGroup(0);
-		XYSeries3.setMarker(new None());;
+		XYSeries3.setMarker(new None());
 		XYSeries3.setLineColor(color2);
 		XYSeries3.setMarkerColor(color3);
 		XYSeries3.setMarker(SeriesMarkers.CIRCLE);
 		
 		XYSeries4 = this.chart.addSeries(this.nameScope4, new double[] { 0.0 }, new double[] { 0.0 }, null);
 		XYSeries4.setYAxisGroup(1);
-		XYSeries4.setMarker(new None());;
+		XYSeries4.setMarker(new None());
 		XYSeries4.setLineColor(color2);
 		XYSeries4.setMarkerColor(color4);
 		XYSeries4.setMarker(SeriesMarkers.CIRCLE);
