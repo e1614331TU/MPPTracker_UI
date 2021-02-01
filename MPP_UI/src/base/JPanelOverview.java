@@ -68,10 +68,10 @@ public class JPanelOverview extends JPanel implements I_PCDI_Listener,  KeyListe
 	private int deviceId;
 	private I_PCDI pcdi;
 
-	private JTextField textField_pc_setPos;
-	private JTextField textField_pc_actPos;
-	private JTextField textField_pc_P;
-	private JTextField textField_pc_D;
+	private JTextField textField_actU;
+	private JTextField textField_actI;
+	private JTextField textField_actP;
+	private JTextField textField_actUout;
 	private JTextField textField_I_ref;
 	
 	private boolean txt_pc_setPos_focused = false;
@@ -99,7 +99,7 @@ public class JPanelOverview extends JPanel implements I_PCDI_Listener,  KeyListe
 		this.deviceId = deviceId;
 		this.infoConsole = infoConsole;
 		
-		this.cyclicVals.add(22); // gamma_mech
+		//this.cyclicVals.add(22); // gamma_mech
 
 		
 		this.pcdi.registerListener(this);
@@ -146,72 +146,73 @@ public class JPanelOverview extends JPanel implements I_PCDI_Listener,  KeyListe
 		gbc_lblNewLabel.gridy = 0;
 		panel_pc.add(lblNewLabel, gbc_lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("Position set (rad)");
+		JLabel lblNewLabel_1 = new JLabel("Uin:");
 		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
 		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_1.gridx = 0;
 		gbc_lblNewLabel_1.gridy = 1;
 		panel_pc.add(lblNewLabel_1, gbc_lblNewLabel_1);
 		
-		textField_pc_setPos = new JTextField();
+		textField_actU = new JTextField();
+		textField_actU.setEditable(false);
 		GridBagConstraints gbc_textField_pc_setPos = new GridBagConstraints();
 		gbc_textField_pc_setPos.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textField_pc_setPos.insets = new Insets(0, 5, 5, 5);
 		gbc_textField_pc_setPos.gridx = 1;
 		gbc_textField_pc_setPos.gridy = 1;
-		panel_pc.add(textField_pc_setPos, gbc_textField_pc_setPos);
-		textField_pc_setPos.setColumns(10);
+		panel_pc.add(textField_actU, gbc_textField_pc_setPos);
+		textField_actU.setColumns(10);
 		
-		JLabel lblNewLabel_2 = new JLabel("Position actual (rad)");
+		JLabel lblNewLabel_2 = new JLabel("Iin:");
 		GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
 		gbc_lblNewLabel_2.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_2.gridx = 0;
 		gbc_lblNewLabel_2.gridy = 2;
 		panel_pc.add(lblNewLabel_2, gbc_lblNewLabel_2);
 		
-		textField_pc_actPos = new JTextField();
-		textField_pc_actPos.setEditable(false);
+		textField_actI = new JTextField();
+		textField_actI.setEditable(false);
 		GridBagConstraints gbc_textField_pc_actPos = new GridBagConstraints();
 		gbc_textField_pc_actPos.insets = new Insets(0, 5, 5, 5);
 		gbc_textField_pc_actPos.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textField_pc_actPos.gridx = 1;
 		gbc_textField_pc_actPos.gridy = 2;
-		panel_pc.add(textField_pc_actPos, gbc_textField_pc_actPos);
-		textField_pc_actPos.setColumns(10);
+		panel_pc.add(textField_actI, gbc_textField_pc_actPos);
+		textField_actI.setColumns(10);
 		
-		JLabel lblNewLabel_3 = new JLabel("P - factor (1)");
+		JLabel lblNewLabel_3 = new JLabel("P:");
 		GridBagConstraints gbc_lblNewLabel_3 = new GridBagConstraints();
 		gbc_lblNewLabel_3.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_3.gridx = 0;
 		gbc_lblNewLabel_3.gridy = 3;
 		panel_pc.add(lblNewLabel_3, gbc_lblNewLabel_3);
 		
-		textField_pc_P = new JTextField();
-		textField_pc_P.setEditable(false);
+		textField_actP = new JTextField();
+		textField_actP.setEditable(false);
 		GridBagConstraints gbc_textField_pc_P = new GridBagConstraints();
 		gbc_textField_pc_P.insets = new Insets(0, 5, 5, 5);
 		gbc_textField_pc_P.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textField_pc_P.gridx = 1;
 		gbc_textField_pc_P.gridy = 3;
-		panel_pc.add(textField_pc_P, gbc_textField_pc_P);
-		textField_pc_P.setColumns(10);
+		panel_pc.add(textField_actP, gbc_textField_pc_P);
+		textField_actP.setColumns(10);
 		
-		JLabel lblNewLabel_4 = new JLabel("D - factor (1)");
+		JLabel lblNewLabel_4 = new JLabel("Uout:");
 		GridBagConstraints gbc_lblNewLabel_4 = new GridBagConstraints();
 		gbc_lblNewLabel_4.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_4.gridx = 0;
 		gbc_lblNewLabel_4.gridy = 4;
 		panel_pc.add(lblNewLabel_4, gbc_lblNewLabel_4);
 		
-		textField_pc_D = new JTextField();
-		textField_pc_D.setEditable(false);
+		textField_actUout = new JTextField();
+		textField_actUout.setEditable(false);
 		GridBagConstraints gbc_textField_pc_D = new GridBagConstraints();
 		gbc_textField_pc_D.insets = new Insets(0, 5, 5, 5);
 		gbc_textField_pc_D.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textField_pc_D.gridx = 1;
 		gbc_textField_pc_D.gridy = 4;
-		panel_pc.add(textField_pc_D, gbc_textField_pc_D);
-		textField_pc_D.setColumns(10);
+		panel_pc.add(textField_actUout, gbc_textField_pc_D);
+		textField_actUout.setColumns(10);
 		
 		JLabel lbl_PC_img = new JLabel("");
 		GridBagConstraints gbc_lbl_PC_img = new GridBagConstraints();
@@ -275,8 +276,8 @@ public class JPanelOverview extends JPanel implements I_PCDI_Listener,  KeyListe
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		this.textField_pc_setPos.addFocusListener(this);
-		this.textField_pc_setPos.addKeyListener(this);
+		this.textField_actU.addFocusListener(this);
+		this.textField_actU.addKeyListener(this);
 		
 		
 		this.disableGUI();
@@ -284,24 +285,23 @@ public class JPanelOverview extends JPanel implements I_PCDI_Listener,  KeyListe
 	}
 	
 	private void disableGUI() {
-		this.textField_pc_setPos.setEnabled(false);
+		this.textField_actU.setEnabled(false);
 	}
 	
 	private void enableGUI() {
-		this.textField_pc_setPos.setEnabled(true);
+		this.textField_actU.setEnabled(true);
 	}
 	
 	private void startTimer() {
 		if(this.cyclicTimer==null) {
 			TimerTask task = new TimerTask() {
 		        public void run() {
-		        	for(int tmp : cyclicVals) {
-		        		pcdi.readParameter(tmp, deviceId);
-		        	}
+		        		pcdi.readParameter(16, deviceId);
+		        		
 		        }
 		    };
 		    this.cyclicTimer=new Timer();
-		    this.cyclicTimer.scheduleAtFixedRate(task, 0, 500);
+		    this.cyclicTimer.scheduleAtFixedRate(task, 0, 1000);
 		}
 	}
 	
@@ -338,17 +338,17 @@ public class JPanelOverview extends JPanel implements I_PCDI_Listener,  KeyListe
 	@Override
 	public void notifyParameterRead(PCDI_Parameter<?> parameter, int deviceId) {
 		int valueNr = parameter.getValueNumber();
-		if(valueNr == 22 && this.txt_pc_setPos_focused == false) {
-			this.textField_pc_setPos.setText(parameter.getValue().toString());
+		if(valueNr == 14) {
+			this.textField_actU.setText(parameter.getValue().toString());
 		}
-		else if(valueNr == 21) {
-			this.textField_pc_actPos.setText(parameter.getValue().toString());
+		else if(valueNr == 15) {
+			this.textField_actI.setText(parameter.getValue().toString());
 		}
-		else if(valueNr == 46) {
-			this.textField_pc_P.setText(parameter.getValue().toString());
+		else if(valueNr == 32) {
+			this.textField_actP.setText(parameter.getValue().toString());
 		}
-		else if(valueNr == 47) {
-			this.textField_pc_D.setText(parameter.getValue().toString());
+		else if(valueNr == 16) {
+			this.textField_actUout.setText(parameter.getValue().toString());
 		}
 	}
 
@@ -395,11 +395,11 @@ public class JPanelOverview extends JPanel implements I_PCDI_Listener,  KeyListe
 	    int key = e.getKeyCode();
 	    if (key == KeyEvent.VK_ENTER) {
 	    	 // set Omega
-	    	 if(e.getSource() == this.textField_pc_setPos) {
-	    		if(!this.textField_pc_setPos.getText().isEmpty()) {
+	    	 if(e.getSource() == this.textField_actU) {
+	    		if(!this.textField_actU.getText().isEmpty()) {
 		 			PCDI_Parameter<?> tmp;
 					tmp = new PCDI_ParameterByte(22, PCDI_TYPES.BYTE, (byte)0);
-					tmp.setValue(this.textField_pc_setPos.getText());
+					tmp.setValue(this.textField_actU.getText());
 					this.pcdi.writeParameter(tmp, this.deviceId);
 	    		}
 	    	 }
@@ -413,14 +413,14 @@ public class JPanelOverview extends JPanel implements I_PCDI_Listener,  KeyListe
 
 	@Override
 	public void focusGained(FocusEvent e) {
-		if(e.getSource() == this.textField_pc_setPos) {
+		if(e.getSource() == this.textField_actU) {
 			this.txt_pc_setPos_focused = true;
 		}
 	}
 
 	@Override
 	public void focusLost(FocusEvent e) {
-		if(e.getSource() == this.textField_pc_setPos) {
+		if(e.getSource() == this.textField_actU) {
 			this.txt_pc_setPos_focused = false;
 		}
 	}
