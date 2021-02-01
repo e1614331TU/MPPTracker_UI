@@ -181,9 +181,9 @@ public class MPP_Osci extends JPanel implements ActionListener, I_PCDI_Listener 
 		if(this.cyclicTimerSlow==null) {
 			TimerTask task = new TimerTask() {
 		        public void run() {
-		        	pcdi.getTableInfo(1, deviceId);
-		        	pcdi.getTableInfo(0, deviceId);
-		        	pcdi.getTableInfo(2, deviceId);
+		        	pcdi.getTableInfo(tableIdU, deviceId);
+		        	pcdi.getTableInfo(tableIdI, deviceId);
+		        	pcdi.getTableInfo(tableIdP, deviceId);
 		        }
 		    };
 		    this.cyclicTimerSlow=new Timer();
@@ -304,30 +304,28 @@ public class MPP_Osci extends JPanel implements ActionListener, I_PCDI_Listener 
 		int minDataPoints=tableData.getIndexNr();
 		int minUequalzero =0;
 		for(int i=0;i<minDataPoints;i++) {
-			if(this.data_U.get(i)==0)
-				minUequalzero=i;
+			//if(this.data_U.get(i)==0)
+				//minUequalzero=i;
 		}
 		if(tableData.getTableId()==this.tableIdI) {
 			this.data_I.add(tableData.getIndexNr(),(double)tableData.getValue());
 			if(this.data_U.size()<minDataPoints)
-				minDataPoints=this.data_U.size();
+				//minDataPoints=this.data_U.size();
 			this.chart.updateXYSeries(this.nameScope1, this.data_U.subList(minUequalzero, minDataPoints), this.data_I.subList(minUequalzero, minDataPoints), null);
 		
 		}
 		if(tableData.getTableId()==this.tableIdU) {
 			this.data_U.add(tableData.getIndexNr(),(double)tableData.getValue());
 			if(this.data_P.size()<minDataPoints)
-				minDataPoints=this.data_P.size();
+				//minDataPoints=this.data_P.size();
 			this.chart.updateXYSeries(this.nameScope2, this.data_U.subList(minUequalzero, minDataPoints), this.data_P.subList(minUequalzero, minDataPoints), null);
 			if(this.data_I.size()<minDataPoints)
-				minDataPoints=this.data_I.size();
+				//minDataPoints=this.data_I.size();
 			this.chart.updateXYSeries(this.nameScope1, this.data_U.subList(minUequalzero, minDataPoints), this.data_I.subList(minUequalzero, minDataPoints), null);
 		}
 		if(tableData.getTableId()==this.tableIdP) {
 			if(this.data_U.size()<minDataPoints)
-				minDataPoints=this.data_U.size();
-			if(tableData.getValue()==0)
-				minUequalzero=tableData.getTableId();
+				//minDataPoints=this.data_U.size();
 			this.data_P.add(tableData.getIndexNr(),(double)tableData.getValue());
 			this.chart.updateXYSeries(this.nameScope2, this.data_U.subList(minUequalzero, minDataPoints), this.data_P.subList(minUequalzero, minDataPoints), null);
 		}
