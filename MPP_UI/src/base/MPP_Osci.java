@@ -232,7 +232,7 @@ public class MPP_Osci extends JPanel implements ActionListener, I_PCDI_Listener 
 			this.chart.updateXYSeries(this.nameScope3, data_U_point, data_I_point, null);
 		}else if(parameter.getValueNumber()==this.valNr_pointU) {
 			this.data_U_point.clear();
-			this.data_U_point.add(Double.valueOf(parameter.getValue()));
+			this.data_U_point.add(Double.valueOf(parameter.getValue().toString()));
 			this.chart.updateXYSeries(this.nameScope3, data_U_point, data_I_point, null);
 		}
 		
