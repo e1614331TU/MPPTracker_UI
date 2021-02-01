@@ -156,7 +156,7 @@ public class JPanelOverview extends JPanel implements I_PCDI_Listener,  KeyListe
 		panel_pc.add(lblNewLabel_1, gbc_lblNewLabel_1);
 		
 		textField_actU = new JTextField();
-		textField_actU.setFont(font);
+		textField_actU.setFont(new Font("Tahoma", Font.BOLD, 18));
 		textField_actU.setEditable(false);
 		GridBagConstraints gbc_textField_pc_setPos = new GridBagConstraints();
 		gbc_textField_pc_setPos.fill = GridBagConstraints.HORIZONTAL;
@@ -176,7 +176,7 @@ public class JPanelOverview extends JPanel implements I_PCDI_Listener,  KeyListe
 		
 		textField_actI = new JTextField();
 		textField_actI.setEditable(false);
-		textField_actI.setFont(font);
+		textField_actI.setFont(new Font("Tahoma", Font.BOLD, 18));
 		GridBagConstraints gbc_textField_pc_actPos = new GridBagConstraints();
 		gbc_textField_pc_actPos.insets = new Insets(0, 5, 5, 5);
 		gbc_textField_pc_actPos.fill = GridBagConstraints.HORIZONTAL;
@@ -195,7 +195,7 @@ public class JPanelOverview extends JPanel implements I_PCDI_Listener,  KeyListe
 		
 		textField_actP = new JTextField();
 		textField_actP.setEditable(false);
-		textField_actP.setFont(font);
+		textField_actP.setFont(new Font("Tahoma", Font.BOLD, 18));
 		GridBagConstraints gbc_textField_pc_P = new GridBagConstraints();
 		gbc_textField_pc_P.insets = new Insets(0, 5, 5, 5);
 		gbc_textField_pc_P.fill = GridBagConstraints.HORIZONTAL;
@@ -213,7 +213,7 @@ public class JPanelOverview extends JPanel implements I_PCDI_Listener,  KeyListe
 		panel_pc.add(lblNewLabel_4, gbc_lblNewLabel_4);
 		
 		textField_actUout = new JTextField();
-		textField_actUout.setFont(font);
+		textField_actUout.setFont(new Font("Tahoma", Font.BOLD, 18));
 		textField_actUout.setEditable(false);
 		GridBagConstraints gbc_textField_pc_D = new GridBagConstraints();
 		gbc_textField_pc_D.insets = new Insets(0, 5, 5, 5);
@@ -348,16 +348,16 @@ public class JPanelOverview extends JPanel implements I_PCDI_Listener,  KeyListe
 	public void notifyParameterRead(PCDI_Parameter<?> parameter, int deviceId) {
 		int valueNr = parameter.getValueNumber();
 		if(valueNr == 14) {
-			this.textField_actU.setText(Math.round(Double.parseDouble(parameter.getValue().toString())*10)/10+" V");
+			this.textField_actU.setText(Math.round(Double.parseDouble(parameter.getValue().toString())*10.0)/10.0+" V");
 		}
 		else if(valueNr == 15) {
-			this.textField_actI.setText(Math.round(Double.parseDouble(parameter.getValue().toString())*10)/10+" A");
+			this.textField_actI.setText(Math.round(Double.parseDouble(parameter.getValue().toString())*10.0)/10.0+" A");
 		}
 		else if(valueNr == 32) {
-			this.textField_actP.setText(Math.round(Double.parseDouble(parameter.getValue().toString())*10)/10+" W");
+			this.textField_actP.setText(Math.round(Double.parseDouble(parameter.getValue().toString())*10.0)/10.0+" W");
 		}
 		else if(valueNr == 16) {
-			this.textField_actUout.setText(Math.round(Double.parseDouble(parameter.getValue().toString())*10)/10+" V");
+			this.textField_actUout.setText(Math.round(Double.parseDouble(parameter.getValue().toString())*10.0)/10.0+" V");
 		}
 	}
 
