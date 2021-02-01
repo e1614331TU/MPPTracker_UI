@@ -348,16 +348,16 @@ public class JPanelOverview extends JPanel implements I_PCDI_Listener,  KeyListe
 	public void notifyParameterRead(PCDI_Parameter<?> parameter, int deviceId) {
 		int valueNr = parameter.getValueNumber();
 		if(valueNr == 14) {
-			this.textField_actU.setText(parameter.getValue().toString());
+			this.textField_actU.setText(Math.round(Double.parseDouble(parameter.getValue().toString()))+" V");
 		}
 		else if(valueNr == 15) {
-			this.textField_actI.setText(parameter.getValue().toString());
+			this.textField_actI.setText(Math.round(Double.parseDouble(parameter.getValue().toString()))+" A");
 		}
 		else if(valueNr == 32) {
-			this.textField_actP.setText(parameter.getValue().toString());
+			this.textField_actP.setText(Math.round(Double.parseDouble(parameter.getValue().toString()))+" W");
 		}
 		else if(valueNr == 16) {
-			this.textField_actUout.setText(parameter.getValue().toString());
+			this.textField_actUout.setText(Math.round(Double.parseDouble(parameter.getValue().toString()))+" V");
 		}
 	}
 
