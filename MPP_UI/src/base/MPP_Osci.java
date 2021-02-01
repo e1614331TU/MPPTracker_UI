@@ -43,11 +43,13 @@ public class MPP_Osci extends JPanel implements ActionListener, I_PCDI_Listener 
 	private Color color1=Color.black;
 	private Color color2=Color.blue;
 	private Color color3=Color.red;
+	private Color color4=Color.red;
 	private int tableIdU = 1;
 	private int tableIdI = 0; 
 	private int tableIdP = 2;
 	private int valNr_pointU = 14;
 	private int valNr_pointI = 15;
+	private int valNr_pointP = 32;
 	private int index_equalZeroU = 0;
 	
 	private Timer cyclicTimerSlow  = null;
@@ -56,6 +58,7 @@ public class MPP_Osci extends JPanel implements ActionListener, I_PCDI_Listener 
 	private String nameScope1 = "I/U curve";
 	private String nameScope2 = "P";
 	private String nameScope3 = "act. Point";
+	private String nameScope4 = "act. Point";
 	private String nameYAxisScope1 = "I/A";
 	private String nameYAxisScope2 = "P/W";
 	
@@ -66,10 +69,12 @@ public class MPP_Osci extends JPanel implements ActionListener, I_PCDI_Listener 
 	private List<Double> data_P = new ArrayList<Double>();
 	private List<Double> data_U_point = new ArrayList<Double>();
 	private List<Double> data_I_point = new ArrayList<Double>();
+	private List<Double> data_P_point = new ArrayList<Double>();
 	private int sampleDepth = 100;
 	private XYSeries XYSeries1;
 	private XYSeries XYSeries2;
 	private XYSeries XYSeries3;
+	private XYSeries XYSeries4;
 	private double maxI = 3.5;
 	private double minI = 0;
 	private double maxP = 200;
@@ -112,6 +117,13 @@ public class MPP_Osci extends JPanel implements ActionListener, I_PCDI_Listener 
 		XYSeries3.setMarkerColor(color3);
 		XYSeries3.setMarker(SeriesMarkers.CIRCLE);
 		
+		XYSeries4 = this.chart.addSeries(this.nameScope4, new double[] { 0.0 }, new double[] { 0.0 }, null);
+		XYSeries4.setYAxisGroup(1);
+		XYSeries4.setMarker(new None());;
+		XYSeries4.setLineColor(color2);
+		XYSeries4.setMarkerColor(color4);
+		XYSeries4.setMarker(SeriesMarkers.CIRCLE);
+		
 
 		// axis 
 		this.chart.setYAxisGroupTitle(0, this.nameYAxisScope1);
@@ -147,6 +159,7 @@ public class MPP_Osci extends JPanel implements ActionListener, I_PCDI_Listener 
 		this.data_I.add(5.0);
 		this.data_I.add(5.0);
 		this.data_I_point.add(8.0);
+		this.data_P_point.add(8.0);
 		this.data_I.add(0.0);
 		this.data_P.add(0.0);
 		this.data_P.add(800.000);
@@ -154,6 +167,7 @@ public class MPP_Osci extends JPanel implements ActionListener, I_PCDI_Listener 
 		this.chart.updateXYSeries(this.nameScope1, data_U, data_I, null);
 		this.chart.updateXYSeries(this.nameScope2, data_U, data_P, null);
 		this.chart.updateXYSeries(this.nameScope3, data_U_point, data_I_point, null);
+		this.chart.updateXYSeries(this.nameScope4, data_U_point, data_P_point, null);
 		
 		
 	}
@@ -164,6 +178,7 @@ public class MPP_Osci extends JPanel implements ActionListener, I_PCDI_Listener 
 		        public void run() {
 		        	pcdi.readParameter(valNr_pointI, deviceId);
 		        	pcdi.readParameter(valNr_pointU, deviceId);
+		        	pcdi.readParameter(valNr_pointP, deviceId);
 		        }
 		    };
 		    this.cyclicTimerFast=new Timer();
@@ -235,6 +250,12 @@ public class MPP_Osci extends JPanel implements ActionListener, I_PCDI_Listener 
 			this.data_U_point.clear();
 			this.data_U_point.add(Double.valueOf(parameter.getValue().toString()));
 			this.chart.updateXYSeries(this.nameScope3, data_U_point, data_I_point, null);
+			this.chart.updateXYSeries(this.nameScope4, data_U_point, data_P_point, null);
+		}
+		else if(parameter.getValueNumber()==this.valNr_pointP) {
+			this.data_P_point.clear();
+			this.data_P_point.add(Double.valueOf(parameter.getValue().toString()));
+			this.chart.updateXYSeries(this.nameScope4, data_U_point, data_P_point, null);
 		}
 		this.revalidate();
 		this.repaint();
@@ -306,8 +327,8 @@ public class MPP_Osci extends JPanel implements ActionListener, I_PCDI_Listener 
 		int minDataPoints=tableData.getIndexNr();
 		int minUequalzero =0;
 		for(int i=0;i<minDataPoints;i++) {
-			//if(this.data_U.get(i)==0)
-				//minUequalzero=i;
+			if(this.data_U.get(i)==0)
+				minUequalzero=i;
 		}
 		if(tableData.getTableId()==this.tableIdI) {
 			this.data_I.add(tableData.getIndexNr(),(double)tableData.getValue());
