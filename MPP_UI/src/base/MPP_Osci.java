@@ -186,7 +186,7 @@ public class MPP_Osci extends JPanel implements ActionListener, I_PCDI_Listener 
 		        }
 		    };
 		    this.cyclicTimerSlow=new Timer();
-		    this.cyclicTimerSlow.scheduleAtFixedRate(task, 0, 7000);
+		    this.cyclicTimerSlow.scheduleAtFixedRate(task, 0, 30000);
 		}
 	}
 	
@@ -301,7 +301,7 @@ public class MPP_Osci extends JPanel implements ActionListener, I_PCDI_Listener 
 	@Override
 	public void notifyTableRead(PCDI_TableData tableData, int deviceId) {
 		// TODO Auto-generated method stub
-		this.infoConsole.append(tableData.toString());
+		int minDataPoints=tableData.getIndexNr();
 		if(tableData.getTableId()==this.tableIdI) {
 			this.data_I.add(tableData.getIndexNr(),(double)tableData.getValue());
 		}
@@ -309,11 +309,15 @@ public class MPP_Osci extends JPanel implements ActionListener, I_PCDI_Listener 
 			this.data_U.add(tableData.getIndexNr(),(double)tableData.getValue());
 		}
 		if(tableData.getTableId()==this.tableIdP) {
+			if(this.data_U.size()<minDataPoints)
+				minDataPoints=this.data_U.size();
+
 			this.data_P.add(tableData.getIndexNr(),(double)tableData.getValue());
+			this.chart.updateXYSeries(this.nameScope2, this.data_U.subList(0, minDataPoints), this.data_P.subList(0, minDataPoints), null);
 		}
 		if(this.data_P.size() == this.data_U.size() && this.data_U.size() == this.data_I.size()) {
 			this.chart.updateXYSeries(this.nameScope1, data_U, data_I, null);
-			this.chart.updateXYSeries(this.nameScope2, data_U, data_P, null);
+			
 		}
 		
 		
