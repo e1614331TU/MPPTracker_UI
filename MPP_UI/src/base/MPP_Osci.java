@@ -253,7 +253,6 @@ public class MPP_Osci extends JPanel implements ActionListener, I_PCDI_Listener 
 	@Override
 	public void notifyError(PCDI_ERROR_TYPE error, int deviceId) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
