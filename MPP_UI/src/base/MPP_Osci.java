@@ -43,9 +43,11 @@ public class MPP_Osci extends JPanel implements ActionListener, I_PCDI_Listener 
 	private Color color1=Color.black;
 	private Color color2=Color.blue;
 	private Color color3=Color.red;
-	private int tableNrU = 1;
-	private int tableNrI = 0; 
-	private int tableNrP = 2;
+	private int tableIdU = 1;
+	private int tableIdI = 0; 
+	private int tableIdP = 2;
+	private int valNr_pointU = 14;
+	private int valNr_pointI = 15;
 	
 	private Timer cyclicTimerSlow  = null;
 	private Timer cyclicTimerFast  = null;
@@ -159,9 +161,8 @@ public class MPP_Osci extends JPanel implements ActionListener, I_PCDI_Listener 
 		if(this.cyclicTimerFast==null) {
 			TimerTask task = new TimerTask() {
 		        public void run() {
-		        	pcdi.getTableInfo(0, deviceId);
-		        	pcdi.getTableInfo(1, deviceId);
-		        	pcdi.getTableInfo(2, deviceId);
+		        	pcdi.readParameter(valNr_pointU, deviceId);
+		        	pcdi.readParameter(valNr_pointI, deviceId);
 		        }
 		    };
 		    this.cyclicTimerFast=new Timer();
@@ -179,7 +180,9 @@ public class MPP_Osci extends JPanel implements ActionListener, I_PCDI_Listener 
 		if(this.cyclicTimerSlow==null) {
 			TimerTask task = new TimerTask() {
 		        public void run() {
-		        	pcdi.readTableIndex(0, 1, deviceId);
+		        	pcdi.getTableInfo(0, deviceId);
+		        	pcdi.getTableInfo(1, deviceId);
+		        	pcdi.getTableInfo(2, deviceId);
 		        }
 		    };
 		    this.cyclicTimerSlow=new Timer();
@@ -223,6 +226,15 @@ public class MPP_Osci extends JPanel implements ActionListener, I_PCDI_Listener 
 	@Override
 	public void notifyParameterRead(PCDI_Parameter<?> parameter, int deviceId) {
 		// TODO Auto-generated method stub
+		if(parameter.getValueNumber()==this.valNr_pointI) {
+			this.data_U_point.clear();
+			this.data_U_point.add((double) parameter.getValue());
+			this.chart.updateXYSeries(this.nameScope3, data_U_point, data_I_point, null);
+		}else if(parameter.getValueNumber()==this.valNr_pointU) {
+			this.data_U_point.clear();
+			this.data_U_point.add((double) parameter.getValue());
+			this.chart.updateXYSeries(this.nameScope3, data_U_point, data_I_point, null);
+		}
 		
 	}
 
@@ -271,12 +283,39 @@ public class MPP_Osci extends JPanel implements ActionListener, I_PCDI_Listener 
 	public void notifyTableInfo(PCDI_TableInfo table, int deviceId) {
 		// TODO Auto-generated method stub
 		this.infoConsole.append(table.toString());
+		if(table.getTableId()==this.tableIdI)
+			this.data_I.clear();
+		if(table.getTableId()==this.tableIdU)
+			this.data_U.clear();
+		if(table.getTableId()==this.tableIdP)
+			this.data_P.clear();
+		if(table.getTableId()==this.tableIdI || table.getTableId()==this.tableIdU || table.getTableId()==this.tableIdP) {
+			for(int i=0;i<=table.getSize();i++) {
+				this.pcdi.readTableIndex(table.getTableId(), i, this.deviceId);
+			}
+		}
+		
 	}
 
 	@Override
 	public void notifyTableRead(PCDI_TableData tableData, int deviceId) {
 		// TODO Auto-generated method stub
 		this.infoConsole.append(tableData.toString());
+		if(tableData.getTableId()==this.tableIdI) {
+			this.data_I.add(tableData.getIndexNr(),(double)tableData.getValue());
+		}
+		if(tableData.getTableId()==this.tableIdU) {
+			this.data_U.add(tableData.getIndexNr(),(double)tableData.getValue());
+		}
+		if(tableData.getTableId()==this.tableIdP) {
+			this.data_P.add(tableData.getIndexNr(),(double)tableData.getValue());
+		}
+		if(this.data_P.size() == this.data_U.size() && this.data_U.size() == this.data_I.size()) {
+			this.chart.updateXYSeries(this.nameScope1, data_U, data_I, null);
+			this.chart.updateXYSeries(this.nameScope2, data_U, data_P, null);
+		}
+		
+		
 	}
 
 	@Override
