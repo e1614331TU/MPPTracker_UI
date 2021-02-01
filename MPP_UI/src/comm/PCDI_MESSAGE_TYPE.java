@@ -12,6 +12,9 @@ public enum PCDI_MESSAGE_TYPE {
 	PARAMETER_WRITE((byte) 3),
 	OSCILLOSCOPE_START((byte) 4),
 	HEARTBEAT((byte) 5),
+	TABLE_INFO_READ ((byte) 6),
+	TABLE_READ ((byte) 7),
+	TABLE_WRITE ((byte) 8),
 	PARAMTER_GET_INFO_ANSWER((byte) 129),
 	PARAMETER_READ_ANSWER((byte) 130),
 	PARAMETER_WRITE_ANSWER((byte) 131),
@@ -22,7 +25,10 @@ public enum PCDI_MESSAGE_TYPE {
 	ERROR_MESSAGE((byte) 136),
 	OSCILLOSCOPE_STATE_ANSWER((byte) 137),
 	HEARTBEAT_ANSWER((byte) 138),
-	INVALID((byte) 7);
+	TABLE_INFO_ANSWER((byte) 139),
+	TABLE_READ_ANSWER((byte) 140),
+	TABLE_WRITE_ANSWER((byte) 141),
+	INVALID((byte) 20);
 	
 	private final Byte code;
 	

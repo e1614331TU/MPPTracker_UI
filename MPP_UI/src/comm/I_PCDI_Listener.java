@@ -67,4 +67,8 @@ public interface I_PCDI_Listener {
 	 * @param deviceId the deviceId of the communication-device
 	 */
 	public void notifyOscilloscopeStateAnswer(PCDI_OSCILLOSCOPE_STATE osci_state, int deviceId);
+	
+	public void notifyTableInfo(PCDI_TableInfo table, int deviceId);
+	public void notifyTableRead(PCDI_TableData tableData, int deviceId);
+	public void notifyTableWrite(PCDI_TableData tableData, int deviceId);
 }

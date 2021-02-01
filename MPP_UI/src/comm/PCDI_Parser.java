@@ -313,4 +313,65 @@ public class PCDI_Parser {
 	    }
 	    return list;
 	}
+
+	public static PCDI_TableInfo parseRxTableInfo(PCDI_Message msg) {
+		//value nr type u value
+		if(msg.getType()==PCDI_MESSAGE_TYPE.TABLE_INFO_ANSWER) {
+			List<Byte> data=msg.getData();
+			
+			int tableId=data.get(0).intValue();
+			int size=data.get(1).intValue();
+			int length=msg.getLength();
+			PCDI_PERMISSION permission=PCDI_PERMISSION.fromByte(data.get(2));
+			PCDI_UNIT unit=PCDI_UNIT.fromByte(data.get(3));
+			String name="err";
+			try {
+				name = new String(toByteArray(data.subList(4, length-5)), "ISO-8859-1");//"ASCII"
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			} 
+			PCDI_TableInfo tableInfo = new PCDI_TableInfo(tableId,permission,name,unit,size);
+			return tableInfo;
+		}
+		return null;
+	}
+
+	public static PCDI_TableData parseRxTableData(PCDI_Message msg) {
+		if(msg.getType()==PCDI_MESSAGE_TYPE.TABLE_READ_ANSWER || msg.getType()==PCDI_MESSAGE_TYPE.TABLE_WRITE_ANSWER) {
+			
+			List<Byte> data=msg.getData();
+			
+			int tableId=data.get(0).intValue();
+			int indexNr=data.get(1).intValue();
+			
+			byte[] floatbyte=toByteArray(data.subList(2, 6));
+			float value = ByteBuffer.wrap(floatbyte).order(ByteOrder.BIG_ENDIAN).getFloat();
+			PCDI_TableData tableData = new PCDI_TableData(tableId, indexNr, value);
+			return tableData;
+
+		}
+		return null;
+	}
+
+	public static PCDI_Message parseTxTableInfo(int tableId, int deviceId) {
+		PCDI_Message msg = new PCDI_Message(deviceId,PCDI_MESSAGE_TYPE.TABLE_INFO_READ);
+		msg.addData((byte) tableId);
+		return msg;
+	}
+
+	public static PCDI_Message parseTxReadTableIndex(int tableId, int indexNr, int deviceId) {
+		PCDI_Message msg = new PCDI_Message(deviceId,PCDI_MESSAGE_TYPE.TABLE_READ);
+		msg.addData((byte) tableId);
+		msg.addData((byte) indexNr);
+		return msg;
+	}
+
+	public static PCDI_Message parseTxWriteTableIndex(int tableId, float value, int indexNr, int deviceId) {
+		PCDI_Message msg = new PCDI_Message(deviceId,PCDI_MESSAGE_TYPE.TABLE_WRITE);
+		msg.addData((byte) tableId);
+		msg.addData((byte) indexNr);
+		byte[] data=ByteBuffer.allocate(4).putFloat(value).array();
+		msg.addData(toByteList(data));			
+		return msg;
+	}
 }

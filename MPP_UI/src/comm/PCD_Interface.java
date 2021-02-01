@@ -148,6 +148,28 @@ public class PCD_Interface implements I_PCDI, I_HWI_Listener{
 				}
 			}
 		}
+		else if(msg.getType() == PCDI_MESSAGE_TYPE.TABLE_INFO_ANSWER) {
+			PCDI_TableInfo tableInfo=PCDI_Parser.parseRxTableInfo(msg);
+			for(I_PCDI_Listener l:listener) {
+				l.notifyTableInfo(tableInfo, msg.getDeviceId());
+			}
+			//remove from requestedbuffer:
+			this.removeFromRequestedBuffer(PCDI_MESSAGE_TYPE.TABLE_INFO_READ, msg);
+		}
+		else if(msg.getType() == PCDI_MESSAGE_TYPE.TABLE_READ_ANSWER) {
+			for(I_PCDI_Listener l:listener) {
+				l.notifyTableRead(PCDI_Parser.parseRxTableData(msg), msg.getDeviceId());
+			}
+			//remove from requestedbuffer:
+			this.removeFromRequestedBuffer(PCDI_MESSAGE_TYPE.TABLE_READ, msg);
+		}
+		else if(msg.getType() == PCDI_MESSAGE_TYPE.TABLE_WRITE_ANSWER) {
+			for(I_PCDI_Listener l:listener) {
+				l.notifyTableRead(PCDI_Parser.parseRxTableData(msg), msg.getDeviceId());
+			}
+			//remove from requestedbuffer:
+			this.removeFromRequestedBuffer(PCDI_MESSAGE_TYPE.TABLE_WRITE, msg);
+		}
 	}
 	
 	private void removeFromRequestedBuffer(PCDI_MESSAGE_TYPE msg_type,PCDI_Message msg) {
@@ -192,6 +214,16 @@ public class PCD_Interface implements I_PCDI, I_HWI_Listener{
 		this.listener.remove(listener);
 	}
 
+	public void getTableInfo(int tableId, int deviceId) {
+		this.addToTxBuffer(PCDI_Parser.parseTxTableInfo(tableId,deviceId));
+	};
+	public void readTableIndex(int tableId, int indexNr, int deviceId) {
+		this.addToTxBuffer(PCDI_Parser.parseTxReadTableIndex(tableId,indexNr,deviceId));
+	}
+	public void writeTableIndex(int tableId, float value, int indexNr, int deviceId) {
+		this.addToTxBuffer(PCDI_Parser.parseTxWriteTableIndex(tableId,value,indexNr,deviceId));
+	}
+	
 	@Override
 	public void notifyByteReceived(byte data) {
 		this.rxBuffer.add(data);

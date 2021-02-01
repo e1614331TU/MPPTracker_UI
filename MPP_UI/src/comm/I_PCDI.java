@@ -71,4 +71,8 @@ public interface I_PCDI {
 	 * @return state of connection
 	 */
 	public boolean isConnected();
+	
+	public void getTableInfo(int tableId, int deviceId);
+	public void readTableIndex(int tableId, int indexNr, int deviceId);
+	public void writeTableIndex(int tableId, float value, int indexNr, int deviceId);
 }

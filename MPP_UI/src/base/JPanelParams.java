@@ -26,6 +26,8 @@ import comm.PCDI_Parameter;
 import comm.PCDI_ParameterInfo;
 import comm.PCDI_ParameterInt;
 import comm.PCDI_TYPES;
+import comm.PCDI_TableData;
+import comm.PCDI_TableInfo;
 import comm.PCDI_UNIT;
 import java.awt.GridBagLayout;
 import javax.swing.JScrollBar;
@@ -204,6 +206,24 @@ public class JPanelParams extends JPanel implements ActionListener, I_PCDI_Liste
 
 	@Override
 	public void notifyConnectionChanges(boolean isConnected) {
+	}
+
+	@Override
+	public void notifyTableInfo(PCDI_TableInfo table, int deviceId) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void notifyTableRead(PCDI_TableData tableData, int deviceId) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void notifyTableWrite(PCDI_TableData tableData, int deviceId) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

@@ -38,7 +38,8 @@ import comm.PCDI_ParameterFloat;
 import comm.PCDI_ParameterInfo;
 import comm.PCDI_ParameterInt;
 import comm.PCDI_TYPES;
-
+import comm.PCDI_TableData;
+import comm.PCDI_TableInfo;
 
 import java.awt.GridBagLayout;
 import java.awt.Image;
@@ -78,6 +79,8 @@ public class JPanelOverview extends JPanel implements I_PCDI_Listener,  KeyListe
 	private boolean txt_cc_setId_focused = false;
 	private boolean txt_cc_setIq_focused = false;
 	
+	private JButton buttonDiagram;
+	
 	private boolean isActive = false;
 	
 	private List<Integer> cyclicVals = new ArrayList<Integer>();
@@ -103,6 +106,7 @@ public class JPanelOverview extends JPanel implements I_PCDI_Listener,  KeyListe
 		
 
 		this.mpp_osci = new MPP_Osci(this.pcdi, this.deviceId, this.infoConsole);
+		
 		
 		
 		this.setPreferredSize(new Dimension(MainWindow.width, MainWindow.contentHeight));
@@ -217,20 +221,30 @@ public class JPanelOverview extends JPanel implements I_PCDI_Listener,  KeyListe
 		gbc_lbl_PC_img.gridy = 7;
 		panel_pc.add(lbl_PC_img, gbc_lbl_PC_img);
 		
+		GridBagConstraints c_8 = new GridBagConstraints();
+		c_8.gridwidth = 2;
+		c_8.insets = new Insets(0, 0, 5, 0); // top padding
+		c_8.fill = GridBagConstraints.BOTH;
+		c_8.weightx = 0.1;
+		c_8.weighty = 1.0;
+		c_8.gridheight = 2;
+		c_8.gridx = 0;
+		c_8.gridy = 6;
+		panel_pc.add(mpp_osci, c_8);
 		// load images
 		try {
 			BufferedImage img=ImageIO.read(new File("img\\pc_block.jpg"));
 			Image dimg = img.getScaledInstance(200, 300,Image.SCALE_AREA_AVERAGING);
 			ImageIcon icon = new ImageIcon(dimg);
-			lbl_PC_img.setIcon(icon);
+			//lbl_PC_img.setIcon(icon);
 			
-			Component verticalStrut = Box.createVerticalStrut(45);
-			GridBagConstraints gbc_verticalStrut = new GridBagConstraints();
-			gbc_verticalStrut.gridheight = 2;
-			gbc_verticalStrut.insets = new Insets(0, 0, 5, 5);
-			gbc_verticalStrut.gridx = 0;
-			gbc_verticalStrut.gridy = 5;
-			panel_pc.add(verticalStrut, gbc_verticalStrut);
+//			Component verticalStrut = Box.createVerticalStrut(45);
+//			GridBagConstraints gbc_verticalStrut = new GridBagConstraints();
+//			gbc_verticalStrut.gridheight = 2;
+//			gbc_verticalStrut.insets = new Insets(0, 0, 5, 5);
+//			gbc_verticalStrut.gridx = 0;
+//			gbc_verticalStrut.gridy = 5;
+//			panel_pc.add(verticalStrut, gbc_verticalStrut);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -409,6 +423,24 @@ public class JPanelOverview extends JPanel implements I_PCDI_Listener,  KeyListe
 		if(e.getSource() == this.textField_pc_setPos) {
 			this.txt_pc_setPos_focused = false;
 		}
+	}
+
+	@Override
+	public void notifyTableInfo(PCDI_TableInfo table, int deviceId) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void notifyTableRead(PCDI_TableData tableData, int deviceId) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void notifyTableWrite(PCDI_TableData tableData, int deviceId) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

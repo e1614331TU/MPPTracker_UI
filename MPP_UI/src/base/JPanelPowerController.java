@@ -51,6 +51,9 @@ import comm.PCDI_ParameterFloat;
 import comm.PCDI_ParameterInfo;
 import comm.PCDI_ParameterInt;
 import comm.PCDI_TYPES;
+import comm.PCDI_TableData;
+import comm.PCDI_TableInfo;
+
 import javax.swing.JRadioButton;
 /**
 * JPanelAdvanced
@@ -1295,5 +1298,23 @@ public class JPanelPowerController extends JPanel implements ActionListener, I_P
 			this.txt_focusedtxtValue00 = false;
 			//System.out.println("focused false" + parameterInfo.getName() );
 		}
+	}
+
+	@Override
+	public void notifyTableInfo(PCDI_TableInfo table, int deviceId) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void notifyTableRead(PCDI_TableData tableData, int deviceId) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void notifyTableWrite(PCDI_TableData tableData, int deviceId) {
+		// TODO Auto-generated method stub
+		
 	}
 }

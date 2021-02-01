@@ -41,6 +41,8 @@ import comm.PCDI_OscilloscopeData;
 import comm.PCDI_PERMISSION;
 import comm.PCDI_Parameter;
 import comm.PCDI_ParameterInfo;
+import comm.PCDI_TableData;
+import comm.PCDI_TableInfo;
 import comm.PCD_Interface;
 /**
 * this MainWindow consists of the Config-Panel, the different tabs and the Console-Window.
@@ -349,6 +351,27 @@ public class MainWindow extends JFrame implements ActionListener, I_PCDI_Listene
 				this.panelScope.setActiveState(false);
 			}
 		}
+	}
+
+
+	@Override
+	public void notifyTableInfo(PCDI_TableInfo table, int deviceId) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void notifyTableRead(PCDI_TableData tableData, int deviceId) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void notifyTableWrite(PCDI_TableData tableData, int deviceId) {
+		// TODO Auto-generated method stub
+		
 	}
 
 

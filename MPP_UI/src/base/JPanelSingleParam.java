@@ -30,6 +30,8 @@ import comm.PCDI_ParameterInfo;
 import comm.PCDI_ParameterInt;
 import comm.PCDI_ParameterLong;
 import comm.PCDI_TYPES;
+import comm.PCDI_TableData;
+import comm.PCDI_TableInfo;
 
 
 /**
@@ -243,6 +245,24 @@ public class JPanelSingleParam extends JPanel implements ActionListener, I_PCDI_
 			this.txt_focused = false;
 			//System.out.println("focused false" + parameterInfo.getName() );
 		}
+	}
+
+	@Override
+	public void notifyTableInfo(PCDI_TableInfo table, int deviceId) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void notifyTableRead(PCDI_TableData tableData, int deviceId) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void notifyTableWrite(PCDI_TableData tableData, int deviceId) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	
