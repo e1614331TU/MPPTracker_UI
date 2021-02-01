@@ -101,6 +101,7 @@ public class JPanelOverview extends JPanel implements I_PCDI_Listener,  KeyListe
 		
 		//this.cyclicVals.add(22); // gamma_mech
 
+		Font font = new Font("Tahoma", Font.ROMAN_BASELINE, 14);
 		
 		this.pcdi.registerListener(this);
 		
@@ -136,7 +137,7 @@ public class JPanelOverview extends JPanel implements I_PCDI_Listener,  KeyListe
 		gbl_panel_pc.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		panel_pc.setLayout(gbl_panel_pc);
 		
-		JLabel lblNewLabel = new JLabel("Position Controller");
+		JLabel lblNewLabel = new JLabel("MPP Overview");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
 		gbc_lblNewLabel.insets = new Insets(5, 5, 5, 0);
@@ -147,6 +148,7 @@ public class JPanelOverview extends JPanel implements I_PCDI_Listener,  KeyListe
 		panel_pc.add(lblNewLabel, gbc_lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Uin:");
+		lblNewLabel_1.setFont(font);
 		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
 		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_1.gridx = 0;
@@ -154,6 +156,7 @@ public class JPanelOverview extends JPanel implements I_PCDI_Listener,  KeyListe
 		panel_pc.add(lblNewLabel_1, gbc_lblNewLabel_1);
 		
 		textField_actU = new JTextField();
+		textField_actU.setFont(font);
 		textField_actU.setEditable(false);
 		GridBagConstraints gbc_textField_pc_setPos = new GridBagConstraints();
 		gbc_textField_pc_setPos.fill = GridBagConstraints.HORIZONTAL;
@@ -164,6 +167,7 @@ public class JPanelOverview extends JPanel implements I_PCDI_Listener,  KeyListe
 		textField_actU.setColumns(10);
 		
 		JLabel lblNewLabel_2 = new JLabel("Iin:");
+		lblNewLabel_2.setFont(font);
 		GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
 		gbc_lblNewLabel_2.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_2.gridx = 0;
@@ -172,6 +176,7 @@ public class JPanelOverview extends JPanel implements I_PCDI_Listener,  KeyListe
 		
 		textField_actI = new JTextField();
 		textField_actI.setEditable(false);
+		textField_actI.setFont(font);
 		GridBagConstraints gbc_textField_pc_actPos = new GridBagConstraints();
 		gbc_textField_pc_actPos.insets = new Insets(0, 5, 5, 5);
 		gbc_textField_pc_actPos.fill = GridBagConstraints.HORIZONTAL;
@@ -181,6 +186,7 @@ public class JPanelOverview extends JPanel implements I_PCDI_Listener,  KeyListe
 		textField_actI.setColumns(10);
 		
 		JLabel lblNewLabel_3 = new JLabel("P:");
+		lblNewLabel_3.setFont(font);
 		GridBagConstraints gbc_lblNewLabel_3 = new GridBagConstraints();
 		gbc_lblNewLabel_3.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_3.gridx = 0;
@@ -189,6 +195,7 @@ public class JPanelOverview extends JPanel implements I_PCDI_Listener,  KeyListe
 		
 		textField_actP = new JTextField();
 		textField_actP.setEditable(false);
+		textField_actP.setFont(font);
 		GridBagConstraints gbc_textField_pc_P = new GridBagConstraints();
 		gbc_textField_pc_P.insets = new Insets(0, 5, 5, 5);
 		gbc_textField_pc_P.fill = GridBagConstraints.HORIZONTAL;
@@ -198,6 +205,7 @@ public class JPanelOverview extends JPanel implements I_PCDI_Listener,  KeyListe
 		textField_actP.setColumns(10);
 		
 		JLabel lblNewLabel_4 = new JLabel("Uout:");
+		lblNewLabel_4.setFont(font);
 		GridBagConstraints gbc_lblNewLabel_4 = new GridBagConstraints();
 		gbc_lblNewLabel_4.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_4.gridx = 0;
@@ -205,6 +213,7 @@ public class JPanelOverview extends JPanel implements I_PCDI_Listener,  KeyListe
 		panel_pc.add(lblNewLabel_4, gbc_lblNewLabel_4);
 		
 		textField_actUout = new JTextField();
+		textField_actUout.setFont(font);
 		textField_actUout.setEditable(false);
 		GridBagConstraints gbc_textField_pc_D = new GridBagConstraints();
 		gbc_textField_pc_D.insets = new Insets(0, 5, 5, 5);
