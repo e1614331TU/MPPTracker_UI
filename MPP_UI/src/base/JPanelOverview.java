@@ -82,6 +82,8 @@ public class JPanelOverview extends JPanel implements I_PCDI_Listener,  KeyListe
 	
 	private List<Integer> cyclicVals = new ArrayList<Integer>();
 	private Timer cyclicTimer  = null;
+	
+	private MPP_Osci mpp_osci;
 	/**
 	* this method is the constructor
 	* @param pcdi is needed for communication
@@ -100,8 +102,13 @@ public class JPanelOverview extends JPanel implements I_PCDI_Listener,  KeyListe
 		this.pcdi.registerListener(this);
 		
 
+		this.mpp_osci = new MPP_Osci(this.pcdi, this.deviceId, this.infoConsole);
+		
+		
 		this.setPreferredSize(new Dimension(MainWindow.width, MainWindow.contentHeight));
 		this.setMinimumSize(new Dimension(MainWindow.width, MainWindow.contentHeight));
+		
+		
 		
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{300, 0};

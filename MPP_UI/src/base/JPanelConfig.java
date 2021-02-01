@@ -432,12 +432,12 @@ public class JPanelConfig extends JPanel implements ActionListener, I_PCDI_Liste
 		else if (valueNr == 18) {
 			if((byte)parameter.getValue()>0) {
 				this.compIsEnabled = true;
-				this.buttonResetComp.setText("disable");
+				this.buttonResetComp.setText("reset");
 				this.circleCOMP.setShapeColorActive();
 			}
 			else {
 				this.compIsEnabled = false;
-				this.buttonResetComp.setText("enable");
+				this.buttonResetComp.setText("reset");
 				this.circleCOMP.setShapeColorInactive();
 			}
 		}
